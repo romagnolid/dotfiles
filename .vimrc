@@ -9,6 +9,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'wolverian/minimal'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -23,6 +24,10 @@ filetype plugin indent on    " required
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+"colorscheme minimal
+set background=light
+
 
 syntax enable
 let mapleader = " "
@@ -43,11 +48,21 @@ set showcmd
 set smartindent
 set softtabstop=4
 set tabstop=4
-hi Cursorline ctermbg=Black ctermfg=Green cterm=bold "current line colors
+hi Cursorline ctermbg=Black ctermfg=White cterm=bold "current line colors
 nnoremap <leader>d "_d
 nnoremap <leader>x "_x
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
+
+" nerdcommenter
+" Align line-wise comment delimiters flush left instead of following code
+" indentation
+let g:NERDDefaultAlign = 'left'
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
 
 " easymotion
 hi EasyMotionTarget2First ctermfg=red
@@ -57,3 +72,4 @@ hi EasyMotionTarget2Second ctermfg=green
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
+

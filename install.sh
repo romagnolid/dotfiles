@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp .vimrc $HOME/.vimrc
+ln -sf $PWD/.vimrc $HOME/.vimrc
 
