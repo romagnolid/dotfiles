@@ -10,6 +10,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'wolverian/minimal'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'Badacadabra/vim-archery'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -25,10 +27,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-colorscheme minimal
+colorscheme archery
 
 syntax enable
-let mapleader = " "
+let mapleader = ","
 set autoindent
 set cursorline "highlight current line 
 set expandtab
@@ -46,18 +48,19 @@ set showcmd
 set smartindent
 set softtabstop=4
 set tabstop=4
-hi Cursorline ctermbg=Black ctermfg=White cterm=bold "current line colors
-nnoremap <leader>d "_d
-nnoremap <leader>x "_x
-vnoremap <leader>d "_d
-vnoremap <leader>p "_dP
+set colorcolumn=100
+
+"hilight search
+
+" cursorline color
+hi Cursorline ctermfg=Black ctermbg=Yellow cterm=bold 
+" colorcolumn
+hi Colorcolumn ctermbg=Yellow
 
 " nerdcommenter
 " Align line-wise comment delimiters flush left instead of following code
 " indentation
 let g:NERDDefaultAlign = 'left'
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -69,5 +72,16 @@ hi EasyMotionTarget2Second ctermfg=green
 " nerdtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
+noremap <Tab> <C-w>w
 
+" shortcuts
+noremap <Leader>r :source $MYVIMRC<CR> "reload vimrc
+inoremap jj <Esc>
+inoremap kk <Esc>
+inoremap <leader>s <Esc>:w<CR> 
+nnoremap <leader>s :w<CR>
+nnoremap <leader>d "_d
+nnoremap <leader>x "_x
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
