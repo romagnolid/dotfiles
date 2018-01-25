@@ -73,15 +73,18 @@ hi EasyMotionTarget2Second ctermfg=green
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 noremap <C-n> :NERDTreeToggle<CR>
-noremap <Tab> <C-w>w
 
 " shortcuts
-noremap <Leader>r :source $MYVIMRC<CR> "reload vimrc
-inoremap jj <Esc>
-inoremap kk <Esc>
-inoremap <leader>s <Esc>:w<CR> 
-nnoremap <leader>s :w<CR>
+noremap <Tab> <C-w>w
+noremap <leader>r :source $MYVIMRC<CR> 
+
+inoremap <leader>s <Esc>:w<CR>
+nnoremap <leader>s <Esc>:w<CR>
+
 nnoremap <leader>d "_d
 nnoremap <leader>x "_x
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
+
+inoremap jk <esc>
+inoremap kj <esc>
