@@ -1,4 +1,6 @@
-set nocompatible              " be iMproved, required
+
+"Many useful commands were stolen from http://stevelosh.com/blog/2010/09/coming-home-to-vim/#vim-s-feeling
+setetet nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -49,6 +51,21 @@ set smartindent
 set softtabstop=4
 set tabstop=4
 set colorcolumn=100
+set relativenumber
+set undofile
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+nnoremap j gj
+nnoremap k gk
+nnoremap ; :
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
 "hilight search
 
