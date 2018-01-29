@@ -79,7 +79,10 @@ noremap <Tab> <C-w>w
 noremap <leader>r :source $MYVIMRC<CR> 
 
 inoremap <leader>s <Esc>:w<CR>
+inoremap <leader>q <Esc>:wq<CR>
+
 nnoremap <leader>s <Esc>:w<CR>
+nnoremap <leader>q <Esc>:wq<CR>
 
 nnoremap <leader>d "_d
 nnoremap <leader>x "_x
@@ -88,3 +91,5 @@ vnoremap <leader>p "_dP
 
 inoremap jk <esc>
 inoremap kj <esc>
+inoremap jj <esc>j
+inoremap kk <esc>k
