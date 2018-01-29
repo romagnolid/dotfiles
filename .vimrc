@@ -1,6 +1,6 @@
 
 "Many useful commands were stolen from http://stevelosh.com/blog/2010/09/coming-home-to-vim/#vim-s-feeling
-setetet nocompatible              " be iMproved, required
+set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -53,19 +53,12 @@ set tabstop=4
 set colorcolumn=100
 set relativenumber
 set undofile
-nnoremap / /\v
-vnoremap / /\v
 set ignorecase
 set smartcase
 set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
-nnoremap j gj
-nnoremap k gk
-nnoremap ; :
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
 "hilight search
 
@@ -94,11 +87,14 @@ noremap <C-n> :NERDTreeToggle<CR>
 " shortcuts
 noremap <Tab> <C-w>w
 noremap <leader>r :source $MYVIMRC<CR> 
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader><space> :noh<cr> 
 
+nnoremap j gj
+nnoremap k gk
 inoremap <leader>s <Esc>:w<CR>
-inoremap <leader>q <Esc>:wq<CR>
-
 nnoremap <leader>s <Esc>:w<CR>
+inoremap <leader>q <Esc>:wq<CR>
 nnoremap <leader>q <Esc>:wq<CR>
 
 nnoremap <leader>d "_d
@@ -108,5 +104,7 @@ vnoremap <leader>p "_dP
 
 inoremap jk <esc>
 inoremap kj <esc>
-inoremap jj <esc>j
-inoremap kk <esc>k
+
+nnoremap / /\v 
+vnoremap / /\v
+nnoremap ; :
