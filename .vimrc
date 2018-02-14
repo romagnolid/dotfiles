@@ -13,6 +13,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'wolverian/minimal'
+Plugin 'jalvesaq/Nvim-R'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
