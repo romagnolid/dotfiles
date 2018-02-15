@@ -5,14 +5,13 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'Badacadabra/vim-archery'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'qpkorr/vim-bufkill'
+Plugin 'tpope/vim-sensible'
+Plugin 'vim-scripts/mayansmoke'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
-Plugin 'wolverian/minimal'
 Plugin 'jalvesaq/Nvim-R'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -29,87 +28,87 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-colorscheme archery
+" NERDTREE
+noremap <C-n> :NERDTreeToggle<CR>
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-syntax enable
-let mapleader = ","
-set autoindent
-set colorcolumn=100
-set cursorline "highlight current line 
-set expandtab
-set gdefault
-set hlsearch
-set ignorecase
-set incsearch
-set laststatus=2
-set list
-set listchars=tab:\|- " show somethingh like '|---'
-set noswapfile
-set nowrap 
-set number "line number
-set relativenumber
-set ruler
-set shiftwidth=4
-set showcmd
-set showmatch
-set smartcase
-set smartindent
-set softtabstop=4
-set tabstop=4
-set undofile
-
-"hilight search
-hi Search ctermfg=yellow ctermbg=blue
-
-" cursorline color
-hi Cursorline ctermfg=Black ctermbg=Yellow cterm=bold 
-" colorcolumn
-hi Colorcolumn ctermbg=Yellow
-
-" nerdcommenter
+" NERDCOMMENTER
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+let mapleader = ","
+set t_Co=256
+colorscheme mayansmoke
 
-" easymotion
-hi EasyMotionTarget2First ctermfg=red
-hi EasyMotionTarget2Second ctermfg=green
+set hlsearch "highlight search
+set smartcase "use case if any caps used
 
-" nerdtree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-noremap <C-n> :NERDTreeToggle<CR>
+set showmatch "show matching parenthesis
+
+set gdefault "always global default
+
+set number "line number
+set relativenumber "relative line number
+set ruler
+
+set smartindent
+set expandtab
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set list
+set listchars=tab:\|- " show somethingh like '|---'
+
+set showcmd "show command while they are typed
+
+set noswapfile
+set nowrap 
+
+set colorcolumn=80
+set cursorline "highlight current line 
 
 " shortcuts
-nnoremap ; :
-noremap <Tab> <C-w>w
-noremap <leader>r :source $MYVIMRC<CR>
+noremap <leader>R :source $MYVIMRC<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-nnoremap <leader><space> :noh<cr>
+noremap <Tab> <C-w>w
+set pastetoggle=<f5>
+" working with windows: open new vertical window and switch to it
+noremap <leader>w <c-w>v<c-w>l
 
+" undofiles
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undofiles")
+    call mkdir($HOME."/.vim/undofiles", "", 0700)
+endif
+set undodir=~/.vim/undofiles
+set undofile
+
+" scroll within wrapped lines
 nnoremap j gj
 nnoremap k gk
 
-inoremap <leader>s <Esc>:w<CR>
-nnoremap <leader>s <Esc>:w<CR>
-inoremap <leader>q <Esc>:wq<CR>
-nnoremap <leader>q <Esc>:wq<CR>
 
+" delete without putting into registers
 nnoremap <leader>d "_d
 nnoremap <leader>x "_x
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
-nnoremap / /\v
-vnoremap / /\v
-
-" working with windows
-noremap <leader>w <c-w>v<c-w>l
-noremap <leader>n :bn<cr>
-noremap <leader>p :bp<cr>
+" save and exit
+inoremap <leader>s <esc>:w<cr>
+nnoremap <leader>s <esc>:w<cr>
+inoremap <leader>q <esc>:q<cr>
+nnoremap <leader>q <esc>:q<cr>
 
 " highlight words but stays on current word
 nnoremap * *N
 nnoremap # *n
+
