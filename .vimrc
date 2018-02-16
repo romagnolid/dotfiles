@@ -13,8 +13,11 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'jalvesaq/Nvim-R'
+Plugin 'jalvesaq/southernlights'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" runtime! plugin/sensible.vim
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -27,6 +30,15 @@ filetype plugin indent on    " required
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" Nvim-R
+autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+let R_args = ['--no-save']
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
+let R_in_buffer = 0
+let R_applescript = 0
+let R_tmux_split = 1
 
 " NERDTREE
 noremap <C-n> :NERDTreeToggle<CR>
@@ -44,14 +56,15 @@ let g:NERDSpaceDelims = 1
 
 let mapleader = ","
 set t_Co=256
-colorscheme mayansmoke
+colorscheme southernlights
 
 set hlsearch "highlight search
+set ignorecase
 set smartcase "use case if any caps used
 
 set showmatch "show matching parenthesis
 
-set gdefault "always global default
+set gdefault "always search global by default
 
 set number "line number
 set relativenumber "relative line number
@@ -62,6 +75,7 @@ set expandtab
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4
+
 set list
 set listchars=tab:\|- " show somethingh like '|---'
 
@@ -74,10 +88,10 @@ set colorcolumn=80
 set cursorline "highlight current line 
 
 " shortcuts
-noremap <leader>R :source $MYVIMRC<cr>
+noremap <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-noremap <Tab> <C-w>w
 set pastetoggle=<f5>
+
 " working with windows: open new vertical window and switch to it
 noremap <leader>w <c-w>v<c-w>l
 
@@ -95,7 +109,6 @@ set undofile
 nnoremap j gj
 nnoremap k gk
 
-
 " delete without putting into registers
 nnoremap <leader>d "_d
 nnoremap <leader>x "_x
@@ -105,8 +118,8 @@ vnoremap <leader>p "_dP
 " save and exit
 inoremap <leader>s <esc>:w<cr>
 nnoremap <leader>s <esc>:w<cr>
-inoremap <leader>q <esc>:q<cr>
-nnoremap <leader>q <esc>:q<cr>
+inoremap <leader>q <esc>:wq<cr>
+nnoremap <leader>q <esc>:wq<cr>
 
 " highlight words but stays on current word
 nnoremap * *N
