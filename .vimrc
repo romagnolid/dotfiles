@@ -14,6 +14,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
+Plugin 'chrisbra/csv.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -37,8 +38,10 @@ let R_args = ['--no-save']
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
 let R_in_buffer = 0
-let R_applescript = 0
 let R_tmux_split = 1
+" dplyr pipe
+inoremap <leader>% <space>%>%
+nnoremap <leader>% a<space>%>%<esc>
 
 " NERDTREE
 noremap <C-n> :NERDTreeToggle<CR>
@@ -89,7 +92,7 @@ set cursorline "highlight current line
 
 " shortcuts
 noremap <leader>r :source $MYVIMRC<CR>
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>ev <C-w>s<C-up>:e $MYVIMRC<cr>
 set pastetoggle=<f5>
 
 " working with windows: open new vertical window and switch to it
@@ -124,4 +127,7 @@ nnoremap <leader>q <esc>:wq<cr>
 " highlight words but stays on current word
 nnoremap * *N
 nnoremap # *n
+
+"next tab
+nnoremap gy gT
 
