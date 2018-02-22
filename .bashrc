@@ -1,3 +1,3 @@
 stty -ixon
-VISUAL="vim"
-EDITOR="$VISUAL"
+export VISUAL="vim"
+export EDITOR="$VISUAL"

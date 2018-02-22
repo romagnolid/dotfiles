@@ -12,11 +12,15 @@ Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
+Plugin 'jalvesaq/vimcmdline'
 Plugin 'chrisbra/csv.vim'
+Plugin 'vim-airline/vim-airline'
 call vundle#end()            " required
 filetype plugin indent on    " required
+syntax on
 
 " runtime! plugin/sensible.vim
 
@@ -39,9 +43,12 @@ vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
 let R_in_buffer = 0
 let R_tmux_split = 1
+let r_indent_align_args = 0
 " dplyr pipe
-inoremap <leader>% <space>%>%
-nnoremap <leader>% a<space>%>%<esc>
+inoremap <leader>% %>%<space> 
+inoremap <leader>5 %>%<space>
+nnoremap <leader>% a%>%<space>
+nnoremap <leader>5 a%>%<space>
 
 " NERDTREE
 noremap <C-n> :NERDTreeToggle<CR>
@@ -65,7 +72,7 @@ set hlsearch "highlight search
 set ignorecase
 set smartcase "use case if any caps used
 
-set showmatch "show matching parenthesis
+set noshowmatch "don't show matching parenthesis
 
 set gdefault "always search global by default
 
@@ -80,7 +87,7 @@ set tabstop=4
 set shiftwidth=4
 
 set list
-set listchars=tab:\|- " show somethingh like '|---'
+set listchars=tab:\>- " show tab
 
 set showcmd "show command while they are typed
 
@@ -97,6 +104,7 @@ set pastetoggle=<f5>
 
 " working with windows: open new vertical window and switch to it
 noremap <leader>w <c-w>v<c-w>l
+noremap <leader>h <c-w>s<c-w>j
 
 " undofiles
 if !isdirectory($HOME."/.vim")
@@ -121,8 +129,8 @@ vnoremap <leader>p "_dP
 " save and exit
 inoremap <leader>s <esc>:w<cr>
 nnoremap <leader>s <esc>:w<cr>
-inoremap <leader>q <esc>:wq<cr>
-nnoremap <leader>q <esc>:wq<cr>
+inoremap <leader>q <esc>:q<cr>
+nnoremap <leader>q <esc>:q<cr>
 
 " highlight words but stays on current word
 nnoremap * *N
