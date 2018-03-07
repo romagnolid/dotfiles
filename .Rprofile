@@ -1,9 +1,19 @@
 options(max.print=100)
-suppressMessages(source("https://bioconductor.org/biocLite.R"))
-.First <- function(){
-  options(repos = c(CRAN = "https://cran.rstudio.com"))
+if (interactive()) {
+    library(colorout)
+    suppressMessages(source("https://bioconductor.org/biocLite.R"))
+    suppressMessages(require(devtools))
 }
 
-if (interactive()) {
-    suppressMessages(require(devtools))
+options(scipen = 10)
+options(repos = c(CRAN = "https://cran.rstudio.com"))
+# tab-complete package names
+utils::rc.settings(ipck=TRUE)
+
+.First <- function(){
+  cat("\nWelcome! It's", date(), " and it's a great time to start working!\n\n") 
+}
+
+.Last <- function(){ 
+   cat("\nGoodbye! I hope it was a great and productive session!\n\n")
 }
