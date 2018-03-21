@@ -16,6 +16,7 @@ Plugin 'jalvesaq/vimcmdline'
 Plugin 'chrisbra/csv.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'bronson/vim-trailing-whitespace'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -31,6 +32,7 @@ syntax on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
 set t_Co=256
 colorscheme southernlights
@@ -54,7 +56,7 @@ set tabstop=4
 set shiftwidth=4
 
 set list
-set listchars=tab:\>- " show tab
+set listchars=tab:\>- "show tab
 
 set showcmd "show command while they are typed
 
@@ -69,8 +71,11 @@ noremap <leader>r :source $MYVIMRC<cr>
 set pastetoggle=<f5>
 
 " working with windows: open new vertical window and switch to it
-noremap <leader>w <c-w>v<c-w>l
+noremap <leader>v <c-w>v<c-w>l
 noremap <leader>h <c-w>s<c-w>j
+
+noremap H 0
+noremap L $
 
 " undofiles
 if !isdirectory($HOME."/.vim")
@@ -100,7 +105,7 @@ nnoremap <leader>q <esc>:q<cr>
 
 " highlight words but stays on current word
 nnoremap * *N
-nnoremap # *n
+nnoremap # #N
 
 "next tab
 nnoremap gy gT
@@ -108,6 +113,7 @@ nnoremap gy gT
 " vimcmdline
 let cmdline_app = {}
 let cmdline_app['python'] = 'ipython3'
+let cmdline_app['sh']     = 'bash'
 
 " Indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -115,15 +121,18 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Nvim-R
-let R_in_buffer = 0
-let R_tmux_split = 1
-let r_indent_align_args = 0
+let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
+let R_args_in_stline = 1 "function arguments displayed in Vim's status line
+let R_in_buffer = 0 "use tmux
+let R_tmux_split = 1 " use tmux in a splitted window
+let r_indent_align_args = 0 "don't align newline args to parenthesis
+" use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
 let R_assign_map = "<M-->"
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
-" autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
-" let R_args = ['--no-save']
+autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+let R_args = ['--no-save']
 " dplyr pipe
 inoremap <leader>% <space>%>%
 nnoremap <leader>% A<space>%>%
