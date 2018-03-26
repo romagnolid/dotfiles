@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [[ $(basename $PWD) != dotfiles ]]; then
-    echo "Error: must run from 'dotfiles'"
+folder=".dotfiles"
+if [[ $(basename $PWD) != "$folder" ]]; then
+    echo "Error: must run from '$folder'"
     exit 1
 fi
 

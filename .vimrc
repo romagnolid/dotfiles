@@ -71,11 +71,8 @@ noremap <leader>r :source $MYVIMRC<cr>
 set pastetoggle=<f5>
 
 " working with windows: open new vertical window and switch to it
-noremap <leader>v <c-w>v<c-w>l
-noremap <leader>h <c-w>s<c-w>j
-
-noremap H 0
-noremap L $
+noremap <leader>v <c-w>v<c-w>l:bn<cr>
+noremap <leader>h <c-w>s<c-w>j:bn<cr>
 
 " undofiles
 if !isdirectory($HOME."/.vim")
@@ -150,5 +147,3 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDDefaultAlign = 'left'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
-
