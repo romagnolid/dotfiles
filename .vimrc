@@ -10,6 +10,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-fugitive'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
 Plugin 'jalvesaq/vimcmdline'
@@ -34,9 +35,9 @@ syntax on
 
 " set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
-set t_Co=256
 colorscheme southernlights
 
+set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
 set ignorecase
 set smartcase "use case if any caps used
@@ -61,18 +62,18 @@ set listchars=tab:\>- "show tab
 set showcmd "show command while they are typed
 
 set noswapfile
-set nowrap 
+set nowrap
 
 set colorcolumn=80
-set cursorline "highlight current line 
+set cursorline "highlight current line
 
 " shortcuts
 noremap <leader>r :source $MYVIMRC<cr>
 set pastetoggle=<f5>
 
-" working with windows: open new vertical window and switch to it
-noremap <leader>v <c-w>v<c-w>l:bn<cr>
-noremap <leader>h <c-w>s<c-w>j:bn<cr>
+" working with windows
+set splitbelow
+set splitright
 
 " undofiles
 if !isdirectory($HOME."/.vim")
@@ -120,19 +121,18 @@ let g:indent_guides_guide_size = 1
 " Nvim-R
 let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
 let R_args_in_stline = 1 "function arguments displayed in Vim's status line
-let R_in_buffer = 0 "use tmux
-let R_tmux_split = 1 " use tmux in a splitted window
-let r_indent_align_args = 0 "don't align newline args to parenthesis
-" use Alt-<minus> as in RStudio
+let R_nvimpager = "tabnew"
+let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
-let R_assign_map = "<M-->"
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
-autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
-let R_args = ['--no-save']
+" autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+" let R_args = ['--no-save']
 " dplyr pipe
 inoremap <leader>% <space>%>%
 nnoremap <leader>% A<space>%>%
+inoremap <leader>+ <space>+
+nnoremap <leader>+ A<space>+
 
 " NERDTREE
 noremap <C-n> :NERDTreeToggle<CR>
