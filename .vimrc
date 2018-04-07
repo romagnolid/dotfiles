@@ -85,6 +85,10 @@ endif
 set undodir=~/.vim/undofiles
 set undofile
 
+" move lines instantly
+noremap - ddp
+noremap _ ddkP
+
 " scroll within wrapped lines
 nnoremap j gj
 nnoremap k gk
