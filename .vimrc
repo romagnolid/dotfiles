@@ -18,6 +18,7 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'lervag/vimtex'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
