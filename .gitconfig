@@ -1,0 +1,11 @@
+[user]
+	email = dario.romagnoli87@gmail.com
+	name = Dario Romagnoli
+[core]
+	editor = vim
+[push]
+	default = simple
+[merge]
+	conflictstyle = diff3
+[alias]
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
