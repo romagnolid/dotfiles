@@ -18,6 +18,7 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'kien/rainbow_parentheses.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -151,3 +152,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDDefaultAlign = 'left'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
+" Rainbow-parenthesis
+au VimEnter * RainbowParenthesesActivate
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
