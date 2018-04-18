@@ -152,3 +152,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDDefaultAlign = 'left'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
+" vimlatex
+let g:vimtex_compiler_latexmk = {'callback' : 0}
