@@ -18,6 +18,7 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lervag/vimtex'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -155,3 +156,9 @@ let g:NERDSpaceDelims = 1
 
 " vimlatex
 let g:vimtex_compiler_latexmk = {'callback' : 0}
+
+" Rainbow-parenthesis
+au VimEnter * RainbowParenthesesActivate
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
