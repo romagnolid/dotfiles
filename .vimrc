@@ -111,6 +111,8 @@ noremap <leader>q <esc>:q<cr>
 " highlight words but stays on current word
 noremap * *zz
 noremap # #zz
+noremap n nzz
+noremap N Nzz
 
 "next tab
 noremap gy gT
