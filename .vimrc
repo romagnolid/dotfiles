@@ -69,10 +69,6 @@ set nowrap
 set colorcolumn=80
 set cursorline "highlight current line
 
-" shortcuts
-noremap <leader>r :source $MYVIMRC<cr>
-set pastetoggle=<f5>
-
 " working with windows
 set splitbelow
 set splitright
@@ -87,32 +83,40 @@ endif
 set undodir=~/.vim/undofiles
 set undofile
 
+" shortcuts
+noremap <leader>r :source $MYVIMRC<cr>
+set pastetoggle=<f5>
+
 " move lines instantly
 noremap - ddp
 noremap _ ddkP
 
 " scroll within wrapped lines
-nnoremap j gj
-nnoremap k gk
+noremap j gj
+noremap k gk
 
 " delete without putting into registers
-nnoremap <leader>d "_d
-nnoremap <leader>x "_x
+noremap <leader>d "_d
+noremap <leader>D "_D
+noremap <leader>x "_x
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
 " save and exit
 inoremap <leader>s <esc>:w<cr>
-nnoremap <leader>s <esc>:w<cr>
+noremap <leader>s <esc>:w<cr>
 inoremap <leader>q <esc>:q<cr>
-nnoremap <leader>q <esc>:q<cr>
+noremap <leader>q <esc>:q<cr>
 
 " highlight words but stays on current word
-nnoremap * *N
-nnoremap # #N
+noremap * *zz
+noremap # #zz
 
 "next tab
-nnoremap gy gT
+noremap gy gT
+
+" yank from current point to end of line
+noremap Y y$
 
 " vimcmdline
 let cmdline_app = {}
