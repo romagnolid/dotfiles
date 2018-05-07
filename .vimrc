@@ -1,4 +1,4 @@
-"Many useful commands were stolen from http://stevelosh.com/blog/2010/09/coming-home-to-vim/#vim-s-feeling
+"Many useful commands have been stolen from http://stevelosh.com/blog/2010/09/coming-home-to-vim/#vim-s-feeling
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -11,6 +11,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-speeddating'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
 Plugin 'jalvesaq/vimcmdline'
@@ -20,24 +21,18 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lervag/vimtex'
+" Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
 " runtime! plugin/sensible.vim
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 " set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
 colorscheme southernlights
+
+nnoremap G Gzz
 
 set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
@@ -84,41 +79,41 @@ set undodir=~/.vim/undofiles
 set undofile
 
 " shortcuts
-noremap <leader>r :source $MYVIMRC<cr>
+nnoremap <leader>r :source $MYVIMRC<cr>
 set pastetoggle=<f5>
 
 " move lines instantly
-noremap - ddp
-noremap _ ddkP
+nnoremap - ddp
+nnoremap _ ddkP
 
 " scroll within wrapped lines
-noremap j gj
-noremap k gk
+nnoremap j gj
+nnoremap k gk
 
 " delete without putting into registers
-noremap <leader>d "_d
-noremap <leader>D "_D
-noremap <leader>x "_x
+nnoremap <leader>d "_d
+nnoremap <leader>D "_D
+nnoremap <leader>x "_x
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
 
 " save and exit
 inoremap <leader>s <esc>:w<cr>
-noremap <leader>s <esc>:w<cr>
+nnoremap <leader>s <esc>:w<cr>
 inoremap <leader>q <esc>:q<cr>
-noremap <leader>q <esc>:q<cr>
+nnoremap <leader>q <esc>:q<cr>
 
 " highlight words but stays on current word
-noremap * *zz
-noremap # #zz
-noremap n nzz
-noremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap n nzz
+nnoremap N Nzz
 
 "next tab
-noremap gy gT
+nnoremap gy gT
 
 " yank from current point to end of line
-noremap Y y$
+nnoremap Y y$
 
 " vimcmdline
 let cmdline_app = {}
@@ -131,6 +126,7 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Nvim-R
+let r_indent_align_args = 0
 let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
 let R_args_in_stline = 1 "function arguments displayed in Vim's status line
 let R_nvimpager = "tabnew"
@@ -138,8 +134,9 @@ let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
-" autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
-" let R_args = ['--no-save']
+autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+let R_args = ['--no-save']
+
 " dplyr pipe
 inoremap <leader>% <space>%>%
 nnoremap <leader>% A<space>%>%
@@ -147,7 +144,7 @@ inoremap <leader>+ <space>+
 nnoremap <leader>+ A<space>+
 
 " NERDTREE
-noremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 " open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
