@@ -21,7 +21,9 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lervag/vimtex'
+Plugin 'mbbill/undotree'
 " Plugin 'christoomey/vim-tmux-navigator'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -32,7 +34,14 @@ syntax on
 let mapleader = ","
 colorscheme southernlights
 
-nnoremap G Gzz
+" autocomplete parenthesis
+" ino " ""<left>
+" ino ' ''<left>
+" ino ( ()<left>
+" ino [ []<left>
+" ino { {}<left>
+" ino {<CR> {<CR>}<ESC>O
+
 
 set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
@@ -79,12 +88,17 @@ set undodir=~/.vim/undofiles
 set undofile
 
 " shortcuts
+nnoremap G Gzz
 nnoremap <leader>r :source $MYVIMRC<cr>
 set pastetoggle=<f5>
 
 " move lines instantly
 nnoremap - ddp
 nnoremap _ ddkP
+
+" delete line above
+execute "set <M-d>=\ed"
+nnoremap <M-d> kdd
 
 " scroll within wrapped lines
 nnoremap j gj
@@ -129,13 +143,13 @@ let g:indent_guides_guide_size = 1
 let r_indent_align_args = 0
 let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
 let R_args_in_stline = 1 "function arguments displayed in Vim's status line
-let R_nvimpager = "tabnew"
+" let R_nvimpager = "tabnew"
+let R_args = ['--no-save']
 let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
+nmap <C-m> <Plug>RDSendLine
+vmap <C-m> <Plug>RDSendSelection
 autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
-let R_args = ['--no-save']
 
 " dplyr pipe
 inoremap <leader>% <space>%>%
@@ -165,3 +179,6 @@ au VimEnter * RainbowParenthesesActivate
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" Undotree
+nnoremap <f6> :UndotreeToggle<cr>
