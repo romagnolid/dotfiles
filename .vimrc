@@ -90,7 +90,6 @@ set undofile
 " shortcuts
 nnoremap G Gzz
 nnoremap <leader>r :source $MYVIMRC<cr>
-set pastetoggle=<f5>
 
 " move lines instantly
 nnoremap - ddp
@@ -180,5 +179,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" Undotree
-nnoremap <f6> :UndotreeToggle<cr>
+" F-keys
+nnoremap <F4> :RainbowParenthesesToggle<cr>
+set pastetoggle=<F5>
+nnoremap <F6> :UndotreeToggle<cr>
