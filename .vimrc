@@ -34,6 +34,10 @@ syntax on
 let mapleader = ","
 colorscheme southernlights
 
+" autocomplete with tab
+inoremap <tab> <c-n>
+inoremap <s-tab> <c-p>
+
 " autocomplete parenthesis
 " ino " ""<left>
 " ino ' ''<left>
