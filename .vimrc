@@ -28,8 +28,6 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
-" runtime! plugin/sensible.vim
-
 " set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
 colorscheme southernlights
@@ -39,13 +37,12 @@ inoremap <tab> <c-n>
 inoremap <s-tab> <c-p>
 
 " autocomplete parenthesis
-" ino " ""<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
 " ino ' ''<left>
-" ino ( ()<left>
-" ino [ []<left>
-" ino { {}<left>
+" ino " ""<left>
 " ino {<CR> {<CR>}<ESC>O
-
 
 set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
