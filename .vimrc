@@ -131,8 +131,8 @@ nnoremap Y y$
 
 " vimcmdline
 let cmdline_app = {}
-let cmdline_app['python'] = 'ipython3'
 let cmdline_app['sh']     = 'bash'
+let cmdline_app['python'] = 'ipython3'
 
 " Indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -148,8 +148,8 @@ let R_args = ['--no-save']
 let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
 nmap <C-m> <Plug>RDSendLine
-vmap <C-m> <Plug>RDSendSelection
-autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+vmap <C-m> <Plug>RSendSelection
+nmap <space> <Plug>RSendParagraph
 
 " dplyr pipe
 inoremap <leader>% <space>%>%
