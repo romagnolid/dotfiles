@@ -117,7 +117,7 @@ nnoremap <leader>s <esc>:w<cr>
 inoremap <leader>q <esc>:q<cr>
 nnoremap <leader>q <esc>:q<cr>
 
-" highlight words but stays on current word
+" highlight words and center
 nnoremap * *zz
 nnoremap # #zz
 nnoremap n nzz
@@ -128,6 +128,10 @@ nnoremap gy gT
 
 " yank from current point to end of line
 nnoremap Y y$
+" highlight from current point to end of line
+nnoremap V v$
+" highlight entire line
+vnoremap v V
 
 " vimcmdline
 let cmdline_app = {}
@@ -181,6 +185,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " F-keys
-nnoremap <F4> :RainbowParenthesesToggle<cr>
+nnoremap <F2> :FixWhitespace<cr>
+nnoremap <F3> :RainbowParenthesesToggle<cr>
+nnoremap <F4> :UndotreeToggle<cr>
 set pastetoggle=<F5>
-nnoremap <F6> :UndotreeToggle<cr>
