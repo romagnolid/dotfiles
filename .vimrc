@@ -7,7 +7,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-fugitive'
@@ -22,7 +21,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lervag/vimtex'
 Plugin 'mbbill/undotree'
-" Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'jeetsukumaran/vim-buffergator'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -36,13 +36,6 @@ colorscheme southernlights
 inoremap <tab> <c-n>
 inoremap <s-tab> <c-p>
 
-" autocomplete parenthesis
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-" ino ' ''<left>
-" ino " ""<left>
-" ino {<CR> {<CR>}<ESC>O
 
 set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
@@ -144,10 +137,11 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Nvim-R
-let r_indent_align_args = 0
+autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+autocmd VimLeave * call RQuit("nosave")
+let r_indent_align_args = 1
 let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
 let R_args_in_stline = 1 "function arguments displayed in Vim's status line
-" let R_nvimpager = "tabnew"
 let R_args = ['--no-save']
 let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
@@ -161,14 +155,6 @@ nnoremap <leader>% A<space>%>%
 inoremap <leader>+ <space>+
 nnoremap <leader>+ A<space>+
 
-" NERDTREE
-nnoremap <C-n> :NERDTreeToggle<CR>
-" open a NERDTree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " NERDCOMMENTER
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
@@ -179,13 +165,33 @@ let g:NERDSpaceDelims = 1
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 " Rainbow-parenthesis
-au VimEnter * RainbowParenthesesActivate
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+autocmd VimEnter * RainbowParenthesesActivate
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 
 " F-keys
 nnoremap <F2> :FixWhitespace<cr>
-nnoremap <F3> :RainbowParenthesesToggle<cr>
-nnoremap <F4> :UndotreeToggle<cr>
+nnoremap <F3> :UndotreeToggle<cr>
+nnoremap <F4> :RainbowParenthesesToggle<cr>
 set pastetoggle=<F5>
+
+" vim-tmux-navigator
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" undotree
+if !exists('g:undotree_ShortIndicators')
+    let g:undotree_ShortIndicators = 0
+endif
+if !exists('g:undotree_SetFocusWhenToggle')
+    let g:undotree_SetFocusWhenToggle = 1
+endif
+
+" Abbreviations
+" autocmd FileType r :iabbrev <buffer> fun function()<left>
+" autocmd FileType r :iabbrev <buffer> function NONONO
+" autocmd FileType r :iabbrev <buffer> ret return()<left>
+" autocmd FileType r :iabbrev <buffer> return NONONO
+" autocmd FileType r :iabbrev <buffer> iff if ()<left>
+" autocmd FileType r :iabbrev <buffer> if NONONO
