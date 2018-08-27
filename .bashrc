@@ -89,7 +89,7 @@ alias l1='ls -1'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -113,6 +113,7 @@ fi
 
 [ -f $HOME/.proxy ] && . $HOME/.proxy
 
+TMPDIR="/scratch/tmp_dromagnoli"
 export VISUAL="vim"
 export EDITOR="$VISUAL"
 shopt -s cdspell
@@ -136,3 +137,4 @@ prompt_command() {
 }
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PROMPT_COMMAND=prompt_command
+. /resources/tools/gatk-4.0.7.0/gatk-completion.sh
