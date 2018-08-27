@@ -138,16 +138,15 @@ let g:indent_guides_guide_size = 1
 
 " Nvim-R
 autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
-autocmd VimLeave * call RQuit("nosave")
 let r_indent_align_args = 1
 let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
 let R_args_in_stline = 1 "function arguments displayed in Vim's status line
 let R_args = ['--no-save']
 let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
 execute "set <M-->=\e-"
-nmap <C-m> <Plug>RDSendLine
-vmap <C-m> <Plug>RSendSelection
-nmap <space> <Plug>RSendParagraph
+" nmap <C-m> <Plug>RDSendLine
+" vmap <C-m> <Plug>RSendSelection
+" nmap <space> <Plug>RSendParagraph
 
 " dplyr pipe
 inoremap <leader>% <space>%>%
@@ -189,9 +188,9 @@ if !exists('g:undotree_SetFocusWhenToggle')
 endif
 
 " Abbreviations
-" autocmd FileType r :iabbrev <buffer> fun function()<left>
-" autocmd FileType r :iabbrev <buffer> function NONONO
-" autocmd FileType r :iabbrev <buffer> ret return()<left>
-" autocmd FileType r :iabbrev <buffer> return NONONO
-" autocmd FileType r :iabbrev <buffer> iff if ()<left>
-" autocmd FileType r :iabbrev <buffer> if NONONO
+autocmd FileType r iabbrev <buffer> if if ()<c-[><left>
+" autocmd FileType r iabbrev <buffer> if NOPE
+autocmd FileType r iabbrev <buffer> fun function()<c-[><left>
+autocmd FileType r iabbrev <buffer> function NOPE
+autocmd FileType r iabbrev <buffer> ret return()<c-[><left>
+autocmd FileType r iabbrev <buffer> return NOPE
