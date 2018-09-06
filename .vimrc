@@ -23,10 +23,14 @@ Plugin 'lervag/vimtex'
 Plugin 'mbbill/undotree'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'qpkorr/vim-bufkill'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
+
+" wildmenu
+set wildmode=longest,list,full
 
 " set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
@@ -86,8 +90,8 @@ nnoremap G Gzz
 nnoremap <leader>r :source $MYVIMRC<cr>
 
 " move lines instantly
+nnoremap + ddkP
 nnoremap - ddp
-nnoremap _ ddkP
 
 " delete line above
 execute "set <M-d>=\ed"
@@ -170,10 +174,11 @@ autocmd Syntax * RainbowParenthesesLoadSquare
 autocmd Syntax * RainbowParenthesesLoadBraces
 
 " F-keys
+set pastetoggle=<F5>
 nnoremap <F2> :FixWhitespace<cr>
 nnoremap <F3> :UndotreeToggle<cr>
-nnoremap <F4> :RainbowParenthesesToggle<cr>
-set pastetoggle=<F5>
+nnoremap <F4> :RStop<cr>
+nnoremap <F6> :RainbowParenthesesToggle<cr>
 
 " vim-tmux-navigator
 " Disable tmux navigator when zooming the Vim pane
@@ -186,11 +191,3 @@ endif
 if !exists('g:undotree_SetFocusWhenToggle')
     let g:undotree_SetFocusWhenToggle = 1
 endif
-
-" Abbreviations
-autocmd FileType r iabbrev <buffer> if if ()<c-[><left>
-" autocmd FileType r iabbrev <buffer> if NOPE
-autocmd FileType r iabbrev <buffer> fun function()<c-[><left>
-autocmd FileType r iabbrev <buffer> function NOPE
-autocmd FileType r iabbrev <buffer> ret return()<c-[><left>
-autocmd FileType r iabbrev <buffer> return NOPE
