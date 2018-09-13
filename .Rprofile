@@ -1,9 +1,10 @@
 options(max.print=100)
 if (interactive()) {
-    library(colorout)
-    suppressMessages(try(source("https://bioconductor.org/biocLite.R")))
-    suppressMessages(require(devtools))
+    try(source("https://bioconductor.org/biocLite.R"))
+    try(require(colorout))
+    try(require(devtools))
 }
+
 .wideScreen <- function(howWide=Sys.getenv("COLUMNS")) {
     options(width=as.integer(howWide))
 }
