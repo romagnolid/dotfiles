@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-    *) return;;
+      *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -76,6 +76,9 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
     alias grep='grep --color=auto'
 fi
 
@@ -83,22 +86,21 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alFh'
+alias ll='ls -alF'
 alias la='ls -A'
-alias l1='ls -1'
+alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/.bash_aliases_local ] && . ~/.bash_aliases_local
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -110,31 +112,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-[ -f $HOME/.proxy ] && . $HOME/.proxy
-
-TMPDIR="/scratch/tmp_dromagnoli"
-export VISUAL="vim"
-export EDITOR="$VISUAL"
-shopt -s cdspell
-
-light_red="\[\e[1;31m\]"
-light_green="\[\e[1;32m\]"
-light_blue="\[\e[1;34m\]"
-yellow="\[\e[1;33m\]"
-reset="\[\e[m\]"
-
-# Customize prompt
-prompt_command() {
-  local status="$?"
-  local smiley=""
-  if [ $status == 0 ]; then
-      smiley="$light_green:)"
-  else
-      smiley="$light_red:("
-  fi
-  export PS1="${light_green}\u@\h ${light_blue}\w${reset} $(__git_ps1 "(%s)")\n${yellow}[\d \t]${reset} ${smiley}${reset} $ "
-}
-export GIT_PS1_SHOWDIRTYSTATE=1
-export PROMPT_COMMAND=prompt_command
-. /resources/tools/gatk-4.0.7.0/gatk-completion.sh
