@@ -34,7 +34,9 @@ set wildmode=longest,list,full
 
 " set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
-colorscheme southernlights
+if filereadable( expand("$HOME/.vim/bundle/southernlights/colors/southernlights.vim") )
+    colorscheme southernlights
+endif
 
 " autocomplete with tab
 inoremap <tab> <c-n>
