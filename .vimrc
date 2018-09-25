@@ -23,6 +23,7 @@ Plugin 'lervag/vimtex'
 Plugin 'mbbill/undotree'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'broadinstitute/vim-wdl'
 Plugin 'qpkorr/vim-bufkill'
 
 call vundle#end()            " required
