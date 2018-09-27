@@ -30,12 +30,9 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
-" wildmenu
-set wildmode=longest,list,full
-
-" set iskeyword-=_ "use underscore as word delimiter
 let mapleader = ","
-if filereadable( expand("$HOME/.vim/bundle/southernlights/colors/southernlights.vim") )
+
+if filereadable(expand("$HOME/.vim/bundle/southernlights/colors/southernlights.vim"))
     colorscheme southernlights
 endif
 
@@ -43,6 +40,8 @@ endif
 inoremap <tab> <c-n>
 inoremap <s-tab> <c-p>
 
+set wildmode=longest,list,full "wildmenu
+set foldmethod=indent
 
 set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
@@ -113,9 +112,9 @@ vnoremap <leader>p "_dP
 
 " save and exit
 inoremap <leader>s <esc>:w<cr>
-nnoremap <leader>s <esc>:w<cr>
+nnoremap <leader>s :w<cr>
 inoremap <leader>q <esc>:q<cr>
-nnoremap <leader>q <esc>:q<cr>
+nnoremap <leader>q :q<cr>
 
 " highlight words and center
 nnoremap * *zz
