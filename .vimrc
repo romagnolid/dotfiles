@@ -5,26 +5,27 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-speeddating'
+Plugin 'broadinstitute/vim-wdl'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'chrisbra/csv.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'itchyny/lightline.vim'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
 Plugin 'jalvesaq/vimcmdline'
-Plugin 'chrisbra/csv.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lervag/vimtex'
 Plugin 'mbbill/undotree'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'broadinstitute/vim-wdl'
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'qpkorr/vim-bufkill'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -37,11 +38,12 @@ if filereadable(expand("$HOME/.vim/bundle/southernlights/colors/southernlights.v
 endif
 
 " autocomplete with tab
-inoremap <tab> <c-n>
-inoremap <s-tab> <c-p>
+" inoremap <tab> <c-n>
+" inoremap <s-tab> <c-p>
 
 set wildmode=longest,list,full "wildmenu
 set foldmethod=indent
+set foldlevelstart=99
 
 set shiftround "round indent with ^-T and ^-D
 set hlsearch "highlight search
@@ -54,13 +56,12 @@ set gdefault "always search global by default
 
 set number "line number
 set relativenumber "relative line number
-set ruler
 
-set smartindent
-set expandtab
-set softtabstop=4
-set tabstop=4
-set shiftwidth=4
+" set smartindent
+" set expandtab
+" set shiftwidth=4
+" set softtabstop=4
+" set tabstop=4
 
 set list
 set listchars=tab:\>- "show tab
@@ -96,8 +97,8 @@ nnoremap + ddkP
 nnoremap - ddp
 
 " delete line above
-execute "set <M-d>=\ed"
-nnoremap <M-d> kdd
+" execute "set <M-d>=\ed"
+" nnoremap <M-d> kdd
 
 " scroll within wrapped lines
 nnoremap j gj
@@ -143,13 +144,14 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Nvim-R
-autocmd VimLeave * if exists("g:SendCmdToR") && string(g:SendCmdToR) != "function('SendCmdToR_fake')" | call RQuit("nosave") | endif
+let R_args = ['--no-save']
+let R_nvimpager = 'horizontal'
+let R_open_example = 0
 let r_indent_align_args = 1
 let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
 let R_args_in_stline = 1 "function arguments displayed in Vim's status line
-let R_args = ['--no-save']
+set <M-->=-
 let R_assign_map = "<M-->" "use Alt-<minus> as in RStudio
-execute "set <M-->=\e-"
 " nmap <C-m> <Plug>RDSendLine
 " vmap <C-m> <Plug>RSendSelection
 " nmap <space> <Plug>RSendParagraph
@@ -193,3 +195,14 @@ endif
 if !exists('g:undotree_SetFocusWhenToggle')
     let g:undotree_SetFocusWhenToggle = 1
 endif
+
+" lightline
+let g:lightline = {
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
