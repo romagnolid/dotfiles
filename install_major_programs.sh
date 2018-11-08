@@ -65,6 +65,7 @@ echo "############ Update and install softwares ####################"
 sudo apt update
 sudo apt install -fy htop gnome-tweak-tool git chrome-gnome-shell \
     ubuntu-restricted-extras \
+    screenruler \
     gtk-redshift checkinstall libevent-dev libncurses5-dev curl \
     libcanberra-gtk-module \
     texmaker rename sshfs \
