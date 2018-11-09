@@ -6,6 +6,7 @@ if [[ $(basename $PWD) != "$folder" ]]; then
     exit 1
 fi
 
+ln -sf $PWD/init.vim         $HOME/.config/nvim/init.vim
 ln -sf $PWD/.bashrc          $HOME/.bashrc
 ln -sf $PWD/.bash_aliases    $HOME/.bash_aliases
 ln -sf $PWD/.Rprofile        $HOME/.Rprofile
