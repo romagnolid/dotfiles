@@ -5,6 +5,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'machakann/vim-highlightedyank'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'chrisbra/csv.vim'

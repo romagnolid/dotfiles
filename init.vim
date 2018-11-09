@@ -4,8 +4,14 @@ filetype off                  " required
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdcommenter'
+    " Align line-wise comment delimiters flush left instead of following code indentation
+    let g:NERDDefaultAlign = 'left'
+    " Add spaces after comment delimiters by default
+    let g:NERDSpaceDelims = 1
+Plugin 'machakann/vim-highlightedyank'
+    let g:highlightedyank_highlight_duration = 400
 Plugin 'broadinstitute/vim-wdl'
-Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'jalvesaq/southernlights'
 Plugin 'chrisbra/csv.vim'
 Plugin 'jalvesaq/Nvim-R'
@@ -39,6 +45,16 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
+Plugin 'itchyny/lightline.vim'
+    let g:lightline = {
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head'
+        \ },
+        \ }
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -55,6 +71,16 @@ set smartcase "use case if any caps used
 set gdefault "always search global by default
 set colorcolumn=80
 set cursorline "highlight current line
+" working with windows
+set splitbelow
+set splitright
+
+" delete without putting into registers
+nnoremap <leader>d "_d
+nnoremap <leader>D "_D
+nnoremap <leader>x "_x
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
 
 " undofiles
 if !isdirectory($HOME."/.vim")
