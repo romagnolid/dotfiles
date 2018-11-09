@@ -5,6 +5,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'machakann/vim-highlightedyank'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'chrisbra/csv.vim'
@@ -37,10 +38,6 @@ if filereadable(expand("$HOME/.vim/bundle/southernlights/colors/southernlights.v
     colorscheme southernlights
 endif
 
-" autocomplete with tab
-" inoremap <tab> <c-n>
-" inoremap <s-tab> <c-p>
-
 set wildmode=longest,list,full "wildmenu
 set foldmethod=indent
 set foldlevelstart=99
@@ -56,12 +53,6 @@ set gdefault "always search global by default
 
 set number "line number
 set relativenumber "relative line number
-
-" set smartindent
-" set expandtab
-" set shiftwidth=4
-" set softtabstop=4
-" set tabstop=4
 
 set list
 set listchars=tab:\>- "show tab
@@ -89,16 +80,13 @@ set undodir=~/.vim/undofiles
 set undofile
 
 " shortcuts
-nnoremap G Gzz
 nnoremap <leader>r :source $MYVIMRC<cr>
+inoremap jj <esc>
+
 
 " move lines instantly
 nnoremap + ddkP
 nnoremap - ddp
-
-" delete line above
-" execute "set <M-d>=\ed"
-" nnoremap <M-d> kdd
 
 " scroll within wrapped lines
 nnoremap j gj
@@ -116,12 +104,6 @@ inoremap <leader>s <esc>:w<cr>
 nnoremap <leader>s :w<cr>
 inoremap <leader>q <esc>:q<cr>
 nnoremap <leader>q :q<cr>
-
-" highlight words and center
-nnoremap * *zz
-nnoremap # #zz
-nnoremap n nzz
-nnoremap N Nzz
 
 "next tab
 nnoremap gy gT
