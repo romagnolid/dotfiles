@@ -55,25 +55,28 @@ Plugin 'itchyny/lightline.vim'
         \   'gitbranch': 'fugitive#head'
         \ },
         \ }
+
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 syntax on
 
 colorscheme southernlights
-nnoremap <leader>r :source $MYVIMRC<cr>
+
 let mapleader = ","
+
+nnoremap <leader>r :source $MYVIMRC<cr>
+set hlsearch
 set wildmode=longest,list,full "wildmenu
 set foldmethod=indent
-set foldlevelstart=99
+set foldlevelstart=2
 set ignorecase
 set smartcase "use case if any caps used
 set gdefault "always search global by default
 set colorcolumn=80
 set cursorline "highlight current line
-" working with windows
-set splitbelow
-set splitright
+set splitbelow "working with windows
+set splitright "working with windows
 
 " delete without putting into registers
 nnoremap <leader>d "_d
@@ -93,6 +96,7 @@ set undodir=~/.vim/undofiles
 set undofile
 
 " scroll within wrapped lines
+set nowrap
 nnoremap j gj
 nnoremap k gk
 

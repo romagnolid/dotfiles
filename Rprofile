@@ -1,6 +1,5 @@
 options(max.print=100)
 if (interactive()) {
-    try(source("https://bioconductor.org/biocLite.R"))
     try(require(colorout))
     try(require(devtools))
 }

@@ -115,6 +115,5 @@ fi
 
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
-shopt -s cdspell
 [ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
-[ -f $HOME/.proxy ] && . $HOME/.proxy
+
