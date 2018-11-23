@@ -12,10 +12,12 @@ Plugin 'jalvesaq/southernlights'
 Plugin 'jalvesaq/vimcmdline'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'lervag/vimtex'
+Plugin 'mbbill/undotree'
 Plugin 'machakann/vim-highlightedyank'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'yggdroot/indentline'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
@@ -42,6 +44,7 @@ let mapleader = ","
 " Plugin 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 400
 " Plugin 'jalvesaq/Nvim-R'
+    autocmd FileType r noremap <C-c> :RStop<cr>
     let R_args = ['--no-save']
     let R_nvimpager = 'horizontal'
     let R_open_example = 0
@@ -61,10 +64,6 @@ let mapleader = ","
     if !exists('g:undotree_SetFocusWhenToggle')
         let g:undotree_SetFocusWhenToggle = 1
     endif
-" Plugin 'nathanaelkane/vim-indent-guides'
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_start_level = 2
-    let g:indent_guides_guide_size = 1
 " Plugin 'itchyny/lightline.vim'
     let g:lightline = {
         \ 'active': {
@@ -79,14 +78,13 @@ let mapleader = ","
 nnoremap <leader>r :source $MYVIMRC<cr>
 set colorcolumn=80
 set cursorline "highlight current line
-set foldlevelstart=2
-set foldclose=all
 set foldmethod=indent
+set foldlevel=99
 set gdefault "always search global by default
 set hlsearch
 set ignorecase
-set list
-set listchars=tab:\|- "show tab
+set list listchars=tab:\|_ "show tab
+set noswapfile
 set number
 set relativenumber
 set smartcase "use case if any caps used
@@ -131,3 +129,7 @@ nnoremap Y y$
 nnoremap V v$
 " highlight entire line
 vnoremap v V
+
+inoremap jj <esc>
+
+set pastetoggle=<F2>
