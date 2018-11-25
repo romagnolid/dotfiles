@@ -20,20 +20,28 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 syntax on
-
 let mapleader = ","
+
+" Parenthesis
+inoremap ( ()<Esc>:let leavechar=")"<CR>i
+inoremap [ []<Esc>:let leavechar="]"<CR>i
+inoremap {<cr> {<cr>}<esc>O
+imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
+
+" Plugin 'yggdroot/indentline'
+    let g:indentLine_color_term = "grey"
 
 " Plugin 'jalvesaq/southernlights'
     colorscheme southernlights
-    hi Whitespace cterm=none ctermfg=yellow
+    hi Whitespace cterm=none ctermfg=grey
 " Plugin 'ntpeters/vim-better-whitespace'
     let g:strip_whitespace_on_save=1
 " Plugin 'scrooloose/nerdcommenter'
@@ -58,6 +66,7 @@ let mapleader = ","
 " Plugin 'lervag/vimtex'
     let g:vimtex_compiler_latexmk = {'callback' : 0}
 " Plugin 'mbbill/undotree'
+    nnoremap <F3> :UndotreeToggle<cr>
     if !exists('g:undotree_ShortIndicators')
         let g:undotree_ShortIndicators = 0
     endif
@@ -83,7 +92,7 @@ set foldlevel=99
 set gdefault "always search global by default
 set hlsearch
 set ignorecase
-set list listchars=tab:\|_ "show tab
+set list listchars=tab:\|- "show tab
 set noswapfile
 set number
 set relativenumber
@@ -98,9 +107,6 @@ nnoremap <leader>D "_D
 nnoremap <leader>x "_x
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
-
-nnoremap <leader>n :bn<cr>
-nnoremap <leader>N :bp<cr>
 
 " undofiles
 if !isdirectory($HOME."/.vim")
