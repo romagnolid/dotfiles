@@ -6,6 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'chrisbra/csv.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
@@ -17,6 +18,9 @@ Plugin 'machakann/vim-highlightedyank'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'yggdroot/indentline'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'joshdick/onedark.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -29,19 +33,40 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 let mapleader = ","
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
 
-" Parenthesis
-inoremap ( ()<Esc>:let leavechar=")"<CR>i
-inoremap [ []<Esc>:let leavechar="]"<CR>i
-inoremap {<cr> {<cr>}<esc>O
-imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
+
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+" `gui` is the hex color code used in GUI mode/nvim true-color mode
+" `cterm` is the color code used in 256-color mode
+" `cterm16` is the color code used in 16-color mode
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
+colorscheme onedark
+
+" Plugin 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_save_on_switch = 1
+let g:tmux_navigator_disable_when_zoomed = 1
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
 
 " Plugin 'yggdroot/indentline'
     let g:indentLine_color_term = "grey"
 
 " Plugin 'jalvesaq/southernlights'
-    colorscheme southernlights
-    hi Whitespace cterm=none ctermfg=grey
+    " colorscheme southernlights
+    " hi Whitespace cterm=none ctermfg=grey
 " Plugin 'ntpeters/vim-better-whitespace'
     let g:strip_whitespace_on_save=1
 " Plugin 'scrooloose/nerdcommenter'
@@ -55,6 +80,7 @@ imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
     autocmd FileType r noremap <C-c> :RStop<cr>
     let R_args = ['--no-save']
     let R_nvimpager = 'horizontal'
+    let R_assign=3
     let R_open_example = 0
     let r_indent_align_args = 1
     let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
@@ -66,7 +92,6 @@ imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
 " Plugin 'lervag/vimtex'
     let g:vimtex_compiler_latexmk = {'callback' : 0}
 " Plugin 'mbbill/undotree'
-    nnoremap <F3> :UndotreeToggle<cr>
     if !exists('g:undotree_ShortIndicators')
         let g:undotree_ShortIndicators = 0
     endif
@@ -84,7 +109,6 @@ imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
         \ },
         \ }
 
-nnoremap <leader>r :source $MYVIMRC<cr>
 set colorcolumn=80
 set cursorline "highlight current line
 set foldmethod=indent
@@ -92,7 +116,7 @@ set foldlevel=99
 set gdefault "always search global by default
 set hlsearch
 set ignorecase
-set list listchars=tab:\|- "show tab
+set list listchars=tab:\|-,eol:$ "show tab
 set noswapfile
 set number
 set relativenumber
@@ -138,4 +162,21 @@ vnoremap v V
 
 inoremap jj <esc>
 
+" Parenthesis
+inoremap ( ()<Esc>:let leavechar=")"<CR>i
+inoremap [ []<Esc>:let leavechar="]"<CR>i
+inoremap {<cr> {<cr>}<esc>O
+imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
+
+" Function keys
 set pastetoggle=<F2>
+nnoremap <F3> :UndotreeToggle<cr>
+nnoremap <F4> :BuffergatorToggle<cr>
+nnoremap <F5> :Vexplore<cr>
+
+" newtr: vim default tree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
