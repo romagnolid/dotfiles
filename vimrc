@@ -19,7 +19,6 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'yggdroot/indentline'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'joshdick/onedark.vim'
-Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
@@ -51,15 +50,17 @@ if (has("autocmd") && !has("gui_running"))
 endif
 colorscheme onedark
 
+" Plugin 'chrisbra/csv.vim'
+    let g:csv_autocmd_arrange = 1
 " Plugin 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 1
-let g:tmux_navigator_disable_when_zoomed = 1
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
+    let g:tmux_navigator_save_on_switch = 1
+    let g:tmux_navigator_disable_when_zoomed = 1
+    let g:tmux_navigator_no_mappings = 1
+    nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+    nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+    nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+    nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+    nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
 
 " Plugin 'yggdroot/indentline'
     let g:indentLine_color_term = "grey"
@@ -177,6 +178,5 @@ nnoremap <F5> :Vexplore<cr>
 " newtr: vim default tree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
