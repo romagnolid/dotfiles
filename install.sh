@@ -6,6 +6,7 @@ if [[ $(basename $PWD) != "$folder" ]]; then
     exit 1
 fi
 
+#curl https://raw.githubusercontent.com/hallazzang/tmux-reset/master/tmux-reset -o tmux.reset.conf
 mkdir -p $HOME/.config/nvim
 ln -sf $PWD/.gitconfig        $HOME/.gitconfig
 ln -sf $PWD/Rprofile          $HOME/.Rprofile
