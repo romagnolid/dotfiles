@@ -65,11 +65,10 @@ colorscheme onedark
     nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
 
 " Plugin 'yggdroot/indentline'
-    let g:indentLine_color_term = "grey"
+    let g:indentLine_color_term="234"
 
 " Plugin 'jalvesaq/southernlights'
     " colorscheme southernlights
-    " hi Whitespace cterm=none ctermfg=grey
 " Plugin 'ntpeters/vim-better-whitespace'
     let g:strip_whitespace_on_save=1
 " Plugin 'scrooloose/nerdcommenter'
@@ -171,8 +170,7 @@ inoremap [ []<Esc>:let leavechar="]"<CR>i
 inoremap {<cr> {<cr>}<esc>O
 imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
 
-" Function keys
-set pastetoggle=<F2>
+set pastetoggle=<F3>
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <F2> :if exists("g:syntax_on") <Bar>
     \     syntax off <Bar>
