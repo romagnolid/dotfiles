@@ -8,7 +8,7 @@ Plugin 'felixhummel/setcolors.vim'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'chrisbra/csv.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/lightline.vim'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/southernlights'
 Plugin 'jalvesaq/vimcmdline'
@@ -101,15 +101,22 @@ colorscheme onedark
         let g:undotree_SetFocusWhenToggle = 1
     endif
 " Plugin 'itchyny/lightline.vim'
-    " let g:lightline = {
-    "     \ 'active': {
-    "     \   'left': [ [ 'mode', 'paste' ],
-    "     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    "     \ },
-    "     \ 'component_function': {
-    "     \   'gitbranch': 'fugitive#head'
-    "     \ },
-    "     \ }
+    let g:lightline = {
+        \ 'colorscheme':'onedark',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ],
+        \ 'right': [ [ 'lineinfo' ],
+        \            [ 'percent'],
+        \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ },
+        \ 'subseparator':{ 'left':'|', 'right' : '|'},
+        \ 'component': {
+        \   'lineinfo': '%3l/%3L:%-2v',
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head'}
+        \ }
 
 set colorcolumn=80
 set cursorline "highlight current line
