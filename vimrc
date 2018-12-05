@@ -17,7 +17,7 @@ Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'romagnolid/onedark.vim'
+Plugin 'joshdick/onedark.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
@@ -28,6 +28,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
 Plugin 'yggdroot/indentline'
+Plugin 'farmergreg/vim-lastplace'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -35,10 +36,7 @@ if exists("g:syntax_on")
     syntax enable
 endif
 
-" set t_8f=[38;2;%lu;%lu;%lum
-" set t_8b=[48;2;%lu;%lu;%lum
-
-" set termguicolors
+set termguicolors
 set colorcolumn=80
 set cursorline "highlight current line
 set foldmethod=indent
@@ -54,26 +52,26 @@ set smartcase "use case if any caps used
 set splitbelow "working with windows
 set splitright "working with windows
 set wildmode=longest,list,full "wildmenu
-
 let mapleader = ","
+
+
+let g:onedark_color_overrides = {
+\ "comment_grey": { "gui": "#abb3bf", "cterm": "248", "cterm16": "15" }
+\}
 " onedark.vim override: Don't set a background color when running in a terminal;
 " just use the terminal's background color
 " `gui` is the hex color code used in GUI mode/nvim true-color mode
 " `cterm` is the color code used in 256-color mode
 " `cterm16` is the color code used in 16-color mode
-if (has("autocmd") && !has("gui_running"))
+if (has('autocmd') && !has('gui_running'))
   augroup ColorSet
     autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "15", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+    let s:white = { 'gui': '#ffffff', 'cterm': '15', 'cterm16' : '7' }
+    autocmd ColorScheme * call onedark#set_highlight('Normal', { 'fg': s:white }) " `bg` will not be styled since there is no `bg` setting
   augroup END
 endif
 colorscheme onedark
 
-augroup HelpMaps
-    autocmd!
-    autocmd FileType help :nnoremap <buffer> <C-[>  <C-t>
-augroup END
 " Plugin 'chrisbra/csv.vim'
     let g:csv_autocmd_arrange = 1
 " Plugin 'christoomey/vim-tmux-navigator'
@@ -214,4 +212,14 @@ augroup CursorSet
   autocmd InsertEnter,InsertLeave * set cul!
 augroup END
 
-" set cursor color
+" better menu navigation
+augroup HelpMaps
+    autocmd!
+    autocmd FileType help :nnoremap <buffer> <C-[>  <C-t>
+augroup END
+
+" set guicursor=n-v-c:block,i-ci-ve:ver5,r-cr:hor20,o:hor50
+"  \,sm:block-blinkwait175-blinkoff150-blinkon175
+" hi Cursor guifg=red guibg=red
+" set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor/lCursor,r-cr:hor20,o:hor50
+au VimLeave * set guicursor=a:ver25-blinkwait175-blinkoff150-blinkon175
