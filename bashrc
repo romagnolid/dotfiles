@@ -36,14 +36,15 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+# case "$TERM" in
+#     xterm-color|*-256color) color_prompt=yes;;
+# esac
+color_prompt=
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+# force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -59,7 +60,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[1m\]\u@\h:\w\n\[\033[0m\]\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -91,6 +92,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.bash_aliases_local ] && . ~/.bash_aliases_local
+[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -105,5 +107,7 @@ fi
 
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
-[ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
-shopt -s autocd
+shopt -s autocd # use ../.. without cd
+
+LS_COLORS=$LS_COLORS:'di=1'
+export LS_COLORS
