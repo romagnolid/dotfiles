@@ -107,3 +107,5 @@ export VISUAL="nvim"
 export EDITOR="$VISUAL"
 [ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
 shopt -s autocd
+
+[[ $- == *i* ]] && stty -ixon
