@@ -36,6 +36,7 @@ if exists("g:syntax_on")
     syntax enable
 endif
 
+NoMatchParen
 set termguicolors
 set colorcolumn=80
 set cursorline "highlight current line
@@ -53,7 +54,6 @@ set splitbelow "working with windows
 set splitright "working with windows
 set wildmode=longest,list,full "wildmenu
 let mapleader = ","
-
 
 let g:onedark_color_overrides = {
 \ "comment_grey": { "gui": "#abb3bf", "cterm": "248", "cterm16": "15" }
@@ -82,6 +82,11 @@ colorscheme onedark
     nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
     nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
     nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
+    inoremap <silent> <M-h> <esc>:TmuxNavigateLeft<cr>
+    inoremap <silent> <M-j> <esc>:TmuxNavigateDown<cr>
+    inoremap <silent> <M-k> <esc>:TmuxNavigateUp<cr>
+    inoremap <silent> <M-l> <esc>:TmuxNavigateRight<cr>
+    inoremap <silent> <M-p> <esc>:TmuxNavigatePrevious<cr>
 
 " Plugin 'yggdroot/indentline'
     let g:indentLine_color_term="234"
