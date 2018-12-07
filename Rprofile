@@ -1,6 +1,6 @@
 options(max.print=100)
 if (interactive()) {
-    try(require(colorout))
+    # try(require(colorout))
     try(require(devtools))
 }
 

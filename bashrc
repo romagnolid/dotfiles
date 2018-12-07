@@ -107,6 +107,8 @@ fi
 
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
+
+[ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
 shopt -s autocd # use ../.. without cd
 
 LS_COLORS=$LS_COLORS:'di=1:ex=0;32'

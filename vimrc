@@ -29,6 +29,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
 Plugin 'yggdroot/indentline'
 Plugin 'farmergreg/vim-lastplace'
+Plugin 'wolverian/minimal'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -36,7 +37,6 @@ if exists("g:syntax_on")
     syntax enable
 endif
 
-NoMatchParen
 set termguicolors
 set colorcolumn=80
 set cursorline "highlight current line
@@ -45,7 +45,7 @@ set foldlevel=99
 set gdefault "always search global by default
 set hlsearch
 set ignorecase
-set list listchars=tab:\|-,eol:$ "show tab
+set list listchars=tab:\|-"show tab
 set noswapfile
 set number
 set relativenumber
