@@ -39,12 +39,11 @@ fi
 # case "$TERM" in
 #     xterm-color|*-256color) color_prompt=yes;;
 # esac
-color_prompt=
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-# force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -57,10 +56,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+[ -f $HOME/.dotfiles/git-prompt.sh ] && . $HOME/.dotfiles/git-prompt.sh || wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh --directory-prefix=$HOME/.dotfiles
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWUPSTREAM="auto"
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]\u@\h \w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[1m\]\u@\h:\w\n\[\033[0m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -92,7 +95,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/.bash_aliases_local ] && . ~/.bash_aliases_local
-[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -108,9 +110,9 @@ fi
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
-[ -f $HOME/.bashrc_local ] && . $HOME/.bashrc_local
 shopt -s autocd # use ../.. without cd
-
-LS_COLORS=$LS_COLORS:'di=1:ex=0;32'
-export LS_COLORS
+[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 [[ $- == *i* ]] && stty -ixon
+
+LS_COLORS=$LS_COLORS:'di=1:ex=4'
+export LS_COLORS
