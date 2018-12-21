@@ -27,7 +27,6 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
-Plugin 'yggdroot/indentline'
 Plugin 'farmergreg/vim-lastplace'
 Plugin 'wolverian/minimal'
 call vundle#end()            " required
@@ -88,11 +87,12 @@ colorscheme onedark
     inoremap <silent> <M-l> <esc>:TmuxNavigateRight<cr>
     inoremap <silent> <M-p> <esc>:TmuxNavigatePrevious<cr>
 
-" Plugin 'yggdroot/indentline'
-    let g:indentLine_color_term="234"
+augroup templates
+    autocmd!
+    autocmd BufNewFile *.r      0r ~/.vim/skeleton.R
+    autocmd BufNewFile *.sh     0r ~/.vim/skeleton.sh
+augroup END
 
-" Plugin 'jalvesaq/southernlights'
-    " colorscheme southernlights
 " Plugin 'ntpeters/vim-better-whitespace'
     let g:strip_whitespace_on_save=1
 " Plugin 'scrooloose/nerdcommenter'
@@ -103,13 +103,14 @@ colorscheme onedark
 " Plugin 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 400
 " Plugin 'jalvesaq/Nvim-R'
-    augroup rStop
+    augroup nvimr
       autocmd!
       autocmd FileType r noremap <C-c> :RStop<cr>
+      autocmd Filetype r colorscheme southernlights
     augroup END
     let R_args = ['--no-save']
     let R_nvimpager = 'horizontal'
-    let R_assign=3
+    let R_assign_map = "--"
     let R_open_example = 0
     let r_indent_align_args = 1
     let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
@@ -183,10 +184,10 @@ vnoremap v V
 inoremap jj <esc>
 
 " Parenthesis
-inoremap ( ()<Esc>:let leavechar=")"<CR>i
-inoremap [ []<Esc>:let leavechar="]"<CR>i
-inoremap {<cr> {<cr>}<esc>O
-imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
+" inoremap ( ()<Esc>:let leavechar=")"<CR>i
+" inoremap [ []<Esc>:let leavechar="]"<CR>i
+" inoremap {<cr> {<cr>}<esc>O
+" imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
 
 set pastetoggle=<F5>
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -220,7 +221,7 @@ augroup END
 " better menu navigation
 augroup HelpMaps
     autocmd!
-    autocmd FileType help :nnoremap <buffer> <C-[>  <C-t>
+    autocmd FileType help nnoremap <buffer> <C-[>  <C-t>
 augroup END
 
 " set guicursor=n-v-c:block,i-ci-ve:ver5,r-cr:hor20,o:hor50
