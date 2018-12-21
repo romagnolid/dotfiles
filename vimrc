@@ -89,7 +89,7 @@ colorscheme onedark
 
 augroup templates
     autocmd!
-    autocmd BufNewFile *.r      0r ~/.vim/skeleton.R
+    autocmd BufNewFile *.R      0r ~/.vim/skeleton.R
     autocmd BufNewFile *.sh     0r ~/.vim/skeleton.sh
 augroup END
 
