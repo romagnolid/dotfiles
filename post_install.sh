@@ -68,8 +68,8 @@ sudo apt install -fy htop gnome-tweak-tool git chrome-gnome-shell \
     screenruler \
     gtk-redshift checkinstall libevent-dev libncurses5-dev curl \
     libcanberra-gtk-module \
-    texmaker rename sshfs \
-    audacity libreoffice oracle-java8-installer vim neovim
+    rename sshfs \
+    libreoffice oracle-java8-installer vim neovim
 
 
 echo "############ Download dotfiles ####################"
@@ -83,20 +83,3 @@ echo "############ Download vim plugins ####################"
 # vim plugins
 [ ! -d $HOME/.vim/bundle/Vundle.vim ] && git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
-
-# tmux
-echo "############ Download and install tmux ####################"
-exist_pkg=$(dpkg -l | grep tmux)
-if [ -z exist_pkg ]; then
-    [ ! -e $HOME/Downloads/tmux-2.7.tar.gz ] && wget https://github.com/tmux/tmux/releases/download/2.7/tmux-2.7.tar.gz -p $HOME/Downloads
-    tar xvzf $HOME/Downloads/tmux-2.7.tar.gz --directory $HOME/Downloads
-    cd $HOME/Downloads/tmux-2.7
-    ./configure
-    sudo checkinstall
-    cd ~
-fi
-
-echo "############ Download tmux plugins ####################"
-# tmux plugins (plugins must than be installed using 'prefix + I')
-[ ! -f $HOME/.tmux/reset ] && curl --create-dirs -Lo $HOME/.tmux/reset https://raw.githubusercontent.com/hallazzang/tmux-reset/master/tmux-reset
-[ ! -d $HOME/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
