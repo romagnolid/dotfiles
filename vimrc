@@ -10,7 +10,6 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'felixhummel/setcolors.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jalvesaq/Nvim-R'
-Plugin 'jalvesaq/southernlights'
 Plugin 'jalvesaq/vimcmdline'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'lervag/vimtex'
@@ -23,12 +22,14 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-sleuth'
+" Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
 Plugin 'farmergreg/vim-lastplace'
-Plugin 'wolverian/minimal'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'wesQ3/vim-windowswap'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -36,6 +37,8 @@ if exists("g:syntax_on")
     syntax enable
 endif
 
+set startofline "When 'on' the commands listed below move the cursor to the first non-blank of the line.
+set showcmd
 set termguicolors
 set colorcolumn=80
 set cursorline "highlight current line
@@ -52,7 +55,14 @@ set smartcase "use case if any caps used
 set splitbelow "working with windows
 set splitright "working with windows
 set wildmode=longest,list,full "wildmenu
+set expandtab
+set smarttab
+set softtabstop=4 tabstop=4 shiftwidth=4
 let mapleader = ","
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 let g:onedark_color_overrides = {
 \ "comment_grey": { "gui": "#abb3bf", "cterm": "248", "cterm16": "15" }
@@ -105,16 +115,19 @@ augroup END
 " Plugin 'jalvesaq/Nvim-R'
     augroup nvimr
       autocmd!
-      autocmd FileType r noremap <C-c> :RStop<cr>
-      autocmd Filetype r colorscheme southernlights
+      autocmd FileType r,rmd noremap <C-c> :RStop<cr>
     augroup END
+    nnoremap <leader>% <esc>A %>%<esc>o
+    inoremap <leader>% <esc>A %>%<esc>o
     let R_args = ['--no-save']
-    let R_nvimpager = 'horizontal'
-    let R_assign_map = "--"
-    let R_open_example = 0
-    let r_indent_align_args = 1
-    let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
     let R_args_in_stline = 1 "function arguments displayed in Vim's status line
+    let R_assign_map = "--"
+    let R_hl_term = 0 "do not rely on the auto detection of colorout
+    let R_nvimpager = 'horizontal'
+    let R_console_width=0 "always split horizontally
+    let R_open_example = 0
+    let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
+    let r_indent_align_args = 0 "don't indent to parenthesis
 " Plugin 'jalvesaq/vimcmdline'
     let cmdline_app = {}
     let cmdline_app['sh']     = 'bash'
@@ -206,7 +219,6 @@ let g:netrw_winsize = 20
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
 
-
 " help cmdline-editing
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
@@ -229,3 +241,12 @@ augroup END
 " hi Cursor guifg=red guibg=red
 " set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor/lCursor,r-cr:hor20,o:hor50
 au VimLeave * set guicursor=a:ver25-blinkwait175-blinkoff150-blinkon175
+
+" Plugin 'terryma/vim-multiple-cursors'
+" Disable option
+let g:multi_cursor_select_all_word_key = ''
+let g:multi_cursor_select_all_key      = ''
+
+" move between buffers
+noremap <A-n> :bn<cr>
+noremap <A-p> :bp<cr>
