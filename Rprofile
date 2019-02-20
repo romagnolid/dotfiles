@@ -1,12 +1,13 @@
 options(max.print=100)
 if (interactive()) {
-    # try(require(colorout))
     try(require(devtools))
 }
 
 .wideScreen <- function(howWide=Sys.getenv("COLUMNS")) {
     options(width=as.integer(howWide))
 }
+
+if (dir.exists("/scratch/tmp_dromagnoli/")) Sys.setenv("TMPDIR"="/scratch/tmp_dromagnoli/")
 
 options(scipen = 10)
 options(repos = c(CRAN = "https://cran.rstudio.com"))

@@ -1,9 +1,5 @@
 # use C-X C-R to reload
 $include /etc/inputrc
 
-# set colored-stats on
-# set completion-ignore-case on
-# set colored-completion-prefix on
 set completion-prefix-display-length 10
-set show-all-if-ambiguous on
-# set show-all-if-unmodified on
+set show-all-if-ambiguous off
