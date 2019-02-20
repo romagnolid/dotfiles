@@ -58,7 +58,8 @@ set wildmode=longest,list,full "wildmenu
 set expandtab
 set smarttab
 set softtabstop=4 tabstop=4 shiftwidth=4
-let mapleader = ","
+let mapleader=","
+let maplocalleader="\<space>"
 
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
@@ -104,7 +105,12 @@ augroup templates
 augroup END
 
 " Plugin 'ntpeters/vim-better-whitespace'
+    let g:better_whitespace_enabled=1
     let g:strip_whitespace_on_save=1
+    let g:strip_only_modified_lines=1
+    let g:strip_whitelines_at_eof=1
+    let g:strip_whitespace_confirm=0
+
 " Plugin 'scrooloose/nerdcommenter'
     " Align line-wise comment delimiters flush left instead of following code indentation
     let g:NERDDefaultAlign = 'left'
@@ -117,14 +123,15 @@ augroup END
       autocmd!
       autocmd FileType r,rmd noremap <C-c> :RStop<cr>
     augroup END
-    nnoremap <leader>% <esc>A %>%<esc>o
-    inoremap <leader>% <esc>A %>%<esc>o
+    nnoremap <leader>% <esc>A %>%
+    inoremap <leader>% <esc>A %>%
     let R_args = ['--no-save']
     let R_args_in_stline = 1 "function arguments displayed in Vim's status line
     let R_assign_map = "--"
     let R_hl_term = 0 "do not rely on the auto detection of colorout
     let R_nvimpager = 'horizontal'
-    let R_console_width=0 "always split horizontally
+    let R_rconsole_width=0 "always split horizontally
+    let R_rconsole_height = 25
     let R_open_example = 0
     let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
     let r_indent_align_args = 0 "don't indent to parenthesis
@@ -193,8 +200,6 @@ nnoremap Y y$
 nnoremap V v$
 " highlight entire line
 vnoremap v V
-
-inoremap jj <esc>
 
 " Parenthesis
 " inoremap ( ()<Esc>:let leavechar=")"<CR>i
