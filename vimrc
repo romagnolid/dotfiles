@@ -102,6 +102,7 @@ augroup templates
     autocmd!
     autocmd BufNewFile *.R      0r ~/.vim/skeleton.R
     autocmd BufNewFile *.sh     0r ~/.vim/skeleton.sh
+    autocmd BufNewFile *.py     0r ~/.vim/skeleton.py
 augroup END
 
 " Plugin 'ntpeters/vim-better-whitespace'
