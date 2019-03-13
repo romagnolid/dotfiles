@@ -65,6 +65,10 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
+
+" Plugin 'tpope/vim-vinegar'
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+' "hidden files: toggle with 'gh'
+
 let g:onedark_color_overrides = {
 \ "comment_grey": { "gui": "#abb3bf", "cterm": "248", "cterm16": "15" }
 \}
@@ -83,20 +87,21 @@ endif
 colorscheme onedark
 
 " Plugin 'chrisbra/csv.vim'
-    let g:csv_autocmd_arrange = 1
+let g:csv_autocmd_arrange = 1
 " Plugin 'christoomey/vim-tmux-navigator'
-    let g:tmux_navigator_disable_when_zoomed = 1
-    let g:tmux_navigator_no_mappings = 1
-    nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-    nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-    nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-    nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-    nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
-    inoremap <silent> <M-h> <esc>:TmuxNavigateLeft<cr>
-    inoremap <silent> <M-j> <esc>:TmuxNavigateDown<cr>
-    inoremap <silent> <M-k> <esc>:TmuxNavigateUp<cr>
-    inoremap <silent> <M-l> <esc>:TmuxNavigateRight<cr>
-    inoremap <silent> <M-p> <esc>:TmuxNavigatePrevious<cr>
+let g:tmux_navigator_save_on_switch = 1
+let g:tmux_navigator_disable_when_zoomed = 1
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
+inoremap <silent> <M-h> <esc>:TmuxNavigateLeft<cr>
+inoremap <silent> <M-j> <esc>:TmuxNavigateDown<cr>
+inoremap <silent> <M-k> <esc>:TmuxNavigateUp<cr>
+inoremap <silent> <M-l> <esc>:TmuxNavigateRight<cr>
+inoremap <silent> <M-p> <esc>:TmuxNavigatePrevious<cr>
 
 augroup templates
     autocmd!
@@ -106,66 +111,66 @@ augroup templates
 augroup END
 
 " Plugin 'ntpeters/vim-better-whitespace'
-    let g:better_whitespace_enabled=1
-    let g:strip_whitespace_on_save=1
-    let g:strip_only_modified_lines=1
-    let g:strip_whitelines_at_eof=1
-    let g:strip_whitespace_confirm=0
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_only_modified_lines=1
+let g:strip_whitelines_at_eof=1
+let g:strip_whitespace_confirm=0
 
 " Plugin 'scrooloose/nerdcommenter'
-    " Align line-wise comment delimiters flush left instead of following code indentation
-    let g:NERDDefaultAlign = 'left'
-    " Add spaces after comment delimiters by default
-    let g:NERDSpaceDelims = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 " Plugin 'machakann/vim-highlightedyank'
-    let g:highlightedyank_highlight_duration = 400
+let g:highlightedyank_highlight_duration = 400
 " Plugin 'jalvesaq/Nvim-R'
-    augroup nvimr
-      autocmd!
-      autocmd FileType r,rmd noremap <C-c> :RStop<cr>
-    augroup END
-    nnoremap <leader>% <esc>A %>%
-    inoremap <leader>% <esc>A %>%
-    let R_args = ['--no-save']
-    let R_args_in_stline = 1 "function arguments displayed in Vim's status line
-    let R_assign_map = "--"
-    let R_hl_term = 0 "do not rely on the auto detection of colorout
-    let R_nvimpager = 'horizontal'
-    let R_rconsole_width=0 "always split horizontally
-    let R_rconsole_height = 25
-    let R_open_example = 0
-    let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
-    let r_indent_align_args = 0 "don't indent to parenthesis
+augroup nvimr
+  autocmd!
+  autocmd FileType r,rmd noremap <C-c> :RStop<cr>
+augroup END
+nnoremap <leader>% <esc>A %>%
+inoremap <leader>% <esc>A %>%
+let R_args = ['--no-save']
+let R_args_in_stline = 1 "function arguments displayed in Vim's status line
+let R_assign_map = "--"
+let R_hl_term = 0 "do not rely on the auto detection of colorout
+let R_nvimpager = 'horizontal'
+let R_rconsole_width=0 "always split horizontally
+let R_rconsole_height = 25
+let R_open_example = 0
+let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
+let r_indent_align_args = 0 "don't indent to parenthesis
 " Plugin 'jalvesaq/vimcmdline'
-    let cmdline_app = {}
-    let cmdline_app['sh']     = 'bash'
-    let cmdline_app['python'] = 'ipython3'
+let cmdline_app = {}
+let cmdline_app['sh']     = 'bash'
+let cmdline_app['python'] = 'ipython3'
 " Plugin 'lervag/vimtex'
-    let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 " Plugin 'mbbill/undotree'
-    if !exists('g:undotree_ShortIndicators')
-        let g:undotree_ShortIndicators = 0
-    endif
-    if !exists('g:undotree_SetFocusWhenToggle')
-        let g:undotree_SetFocusWhenToggle = 1
-    endif
+if !exists('g:undotree_ShortIndicators')
+    let g:undotree_ShortIndicators = 0
+endif
+if !exists('g:undotree_SetFocusWhenToggle')
+    let g:undotree_SetFocusWhenToggle = 1
+endif
 " Plugin 'itchyny/lightline.vim'
-    let g:lightline = {
-        \ 'colorscheme':'onedark',
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
-        \ 'right': [ [ 'lineinfo' ],
-        \            [ 'percent'],
-        \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
-        \ },
-        \ 'subseparator':{ 'left':'|', 'right' : '|'},
-        \ 'component': {
-        \   'lineinfo': '%4l/%L:%-2v',
-        \ },
-        \ 'component_function': {
-        \   'gitbranch': 'fugitive#head'}
-        \ }
+let g:lightline = {
+    \ 'colorscheme':'onedark',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent'],
+    \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
+    \ 'subseparator':{ 'left':'|', 'right' : '|'},
+    \ 'component': {
+    \   'lineinfo': '%4l/%L:%-2v',
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'}
+    \ }
 
 " delete without putting into registers
 nnoremap <leader>d "_d
@@ -229,6 +234,7 @@ nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
+
 
 " unset cursorline when typing
 augroup CursorSet
