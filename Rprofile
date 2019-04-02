@@ -16,8 +16,14 @@ utils::rc.settings(ipck=TRUE)
 
 .First <- function(){
   # cat("\nWelcome! It's", date(), "and it's a great time to start working!\n\n")
+    if (interactive()) {
+        try(utils::loadhistory("~/.Rhistory"))
+    }
 }
 
 .Last <- function(){
   # cat("\nGoodbye! I hope it was a great and productive session!\n\n")
+    if (interactive()) {
+        try(utils::savehistory("~/.Rhistory"))
+    }
 }
