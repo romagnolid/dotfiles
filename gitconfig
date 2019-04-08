@@ -9,5 +9,5 @@
     conflictstyle = diff3
 [alias]
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    s = status
+    s = status -s
     d = diff

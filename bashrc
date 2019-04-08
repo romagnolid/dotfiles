@@ -110,7 +110,6 @@ fi
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
-shopt -s autocd # use ../.. without cd
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 [[ $- == *i* ]] && stty -ixon
 

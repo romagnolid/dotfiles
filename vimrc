@@ -249,11 +249,7 @@ augroup HelpMaps
     autocmd FileType help nnoremap <buffer> <C-[>  <C-t>
 augroup END
 
-" set guicursor=n-v-c:block,i-ci-ve:ver5,r-cr:hor20,o:hor50
-"  \,sm:block-blinkwait175-blinkoff150-blinkon175
-" hi Cursor guifg=red guibg=red
-" set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor/lCursor,r-cr:hor20,o:hor50
-au VimLeave * set guicursor=a:ver25-blinkwait175-blinkoff150-blinkon175
+au VimLeave * set guicursor=a:ver25
 
 " Plugin 'terryma/vim-multiple-cursors'
 " Disable option
@@ -263,3 +259,6 @@ let g:multi_cursor_select_all_key      = ''
 " move between buffers
 noremap <A-n> :bn<cr>
 noremap <A-p> :bp<cr>
+
+" Markdown preview
+noremap <C-P> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
