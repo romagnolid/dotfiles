@@ -42,8 +42,8 @@ set showcmd
 set termguicolors
 set colorcolumn=80
 set cursorline "highlight current line
-set foldmethod=indent
-set foldlevel=99
+" set foldmethod=indent
+" set foldlevel=99
 set gdefault "always search global by default
 set hlsearch
 set ignorecase
@@ -133,15 +133,15 @@ augroup END
 nnoremap <leader>% <esc>A %>%
 inoremap <leader>% <esc>A %>%
 let R_args = ['--no-save']
-let R_args_in_stline = 1 "function arguments displayed in Vim's status line
-let R_assign_map = "--"
-let R_hl_term = 0 "do not rely on the auto detection of colorout
-let R_nvimpager = 'horizontal'
+let R_args_in_stline=1 "function arguments displayed in Vim's status line
+let R_assign_map="--"
+let R_hl_term=0 "do not rely on the auto detection of colorout
+let R_nvimpager='horizontal'
 let R_rconsole_width=0 "always split horizontally
-let R_rconsole_height = 25
-let R_open_example = 0
-let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
-let r_indent_align_args = 0 "don't indent to parenthesis
+let R_rconsole_height=25
+let R_open_example=0
+let R_show_arg_help=0 "don't show R's documentation help in preview window when using ^-X ^-O
+let r_indent_align_args=1 "indent to parenthesis
 " Plugin 'jalvesaq/vimcmdline'
 let cmdline_app = {}
 let cmdline_app['sh']     = 'bash'
@@ -162,12 +162,13 @@ let g:lightline = {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
     \ 'right': [ [ 'lineinfo' ],
-    \            [ 'percent'],
+    \            [ 'percent', 'totline'],
     \            [ 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'subseparator':{ 'left':'|', 'right' : '|'},
     \ 'component': {
-    \   'lineinfo': '%4l/%L:%-2v',
+    \   'percent': '%3.p%%',
+    \   'totline': '%3.L lines',
     \ },
     \ 'component_function': {
     \   'gitbranch': 'fugitive#head'}
