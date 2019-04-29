@@ -37,6 +37,7 @@ if exists("g:syntax_on")
     syntax enable
 endif
 
+set nowrapscan "stop search at bottom
 set startofline "When 'on' the commands listed below move the cursor to the first non-blank of the line.
 set showcmd
 set termguicolors

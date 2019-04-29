@@ -56,7 +56,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-[ -f $HOME/.dotfiles/git-prompt.sh ] && . $HOME/.dotfiles/git-prompt.sh || wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh --directory-prefix=$HOME/.dotfiles
+if [ -f $HOME/.dotfiles/git-prompt.sh ]; then
+    . $HOME/.dotfiles/git-prompt.sh
+else
+        wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh --directory-prefix=$HOME/.dotfiles
+fi
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 if [ "$color_prompt" = yes ]; then
