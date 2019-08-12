@@ -22,14 +22,13 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
-" Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
 Plugin 'farmergreg/vim-lastplace'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'ibab/vim-snakemake'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -37,6 +36,8 @@ if exists("g:syntax_on")
     syntax enable
 endif
 
+au Filetype vim setlocal formatoptions-=o formatoptions+=1nBM
+set formatoptions+=r
 set nowrapscan "stop search at bottom
 set startofline "When 'on' the commands listed below move the cursor to the first non-blank of the line.
 set showcmd
@@ -62,10 +63,13 @@ set softtabstop=4 tabstop=4 shiftwidth=4
 let mapleader=","
 let maplocalleader="\<space>"
 
+" UPPERCASE word
+inoremap <silent> <c-u> <esc>viwUea
+
+" Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-
 
 " Plugin 'tpope/vim-vinegar'
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+' "hidden files: toggle with 'gh'
@@ -90,7 +94,7 @@ colorscheme onedark
 " Plugin 'chrisbra/csv.vim'
 let g:csv_autocmd_arrange = 1
 " Plugin 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 1
+let g:tmux_navigator_save_on_switch = 0
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -210,12 +214,6 @@ nnoremap V v$
 " highlight entire line
 vnoremap v V
 
-" Parenthesis
-" inoremap ( ()<Esc>:let leavechar=")"<CR>i
-" inoremap [ []<Esc>:let leavechar="]"<CR>i
-" inoremap {<cr> {<cr>}<esc>O
-" imap <C-f> <Esc>:exec "normal f" . leavechar<CR>a
-
 set pastetoggle=<F5>
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <F2> :if exists("g:syntax_on") <Bar>
@@ -238,7 +236,6 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
 
-
 " unset cursorline when typing
 augroup CursorSet
   autocmd!
@@ -253,14 +250,12 @@ augroup END
 
 au VimLeave * set guicursor=a:ver25
 
-" Plugin 'terryma/vim-multiple-cursors'
-" Disable option
-let g:multi_cursor_select_all_word_key = ''
-let g:multi_cursor_select_all_key      = ''
-
 " move between buffers
 noremap <A-n> :bn<cr>
 noremap <A-p> :bp<cr>
 
 " Markdown preview
 noremap <C-P> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
+
+" automatically reload file
+au FocusGained,BufEnter * :silent! !

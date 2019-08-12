@@ -1,4 +1,4 @@
-options(max.print = 100,
+options(max.print = 200,
         scipen = 10,
         repos = c(CRAN = "https://cran.rstudio.com"))
 
@@ -18,12 +18,14 @@ if (dir.exists("/scratch/tmp_dromagnoli/")) {
 utils::rc.settings(ipck=TRUE)
 
 .First <- function(){
+    message("Welcome! Let's have a productive session!")
     if (interactive()) {
         try(utils::loadhistory("~/.Rhistory"))
     }
 }
 
 .Last <- function(){
+    message("Goodbye!")
     if (interactive()) {
         try(utils::savehistory("~/.Rhistory"))
     }
