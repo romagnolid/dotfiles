@@ -15,7 +15,8 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
-Plugin 'ntpeters/vim-better-whitespace'
+" Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'AndrewRadev/switch.vim'
 Plugin 'joshdick/onedark.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-eunuch'
@@ -49,6 +50,7 @@ set cursorline "highlight current line
 set gdefault "always search global by default
 set hlsearch
 set ignorecase
+set infercase
 set list listchars=tab:\|-"show tab
 set noswapfile
 set number
@@ -65,6 +67,13 @@ let maplocalleader="\<space>"
 
 " UPPERCASE word
 inoremap <silent> <c-u> <esc>viwUea
+
+" Plugin 'AndrewRadev/switch.vim'
+let g:switch_mapping = "t"
+let g:switch_custom_definitions = 
+            \[
+            \ [ 'TRUE', 'FALSE' ]
+            \ ]
 
 " Plugin 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
@@ -117,11 +126,11 @@ augroup templates
 augroup END
 
 " Plugin 'ntpeters/vim-better-whitespace'
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-let g:strip_only_modified_lines=1
-let g:strip_whitelines_at_eof=1
-let g:strip_whitespace_confirm=0
+" let g:better_whitespace_enabled=1
+" let g:strip_whitespace_on_save=1
+" let g:strip_only_modified_lines=1
+" let g:strip_whitelines_at_eof=1
+" let g:strip_whitespace_confirm=0
 
 " Plugin 'scrooloose/nerdcommenter'
 " Align line-wise comment delimiters flush left instead of following code indentation
@@ -151,6 +160,8 @@ let r_indent_align_args=1 "indent to parenthesis
 let cmdline_app = {}
 let cmdline_app['sh']     = 'bash'
 let cmdline_app['python'] = 'ipython3'
+let cmdline_map_send = '<LocalLeader>d'
+let cmdline_map_send_and_stay = '<LocalLeader>l'
 " Plugin 'lervag/vimtex'
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 " Plugin 'mbbill/undotree'
@@ -255,7 +266,14 @@ noremap <A-n> :bn<cr>
 noremap <A-p> :bp<cr>
 
 " Markdown preview
-noremap <C-P> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
+noremap <C-M> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
 
 " automatically reload file
 au FocusGained,BufEnter * :silent! !
+
+" save and load folds
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
