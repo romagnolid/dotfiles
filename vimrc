@@ -15,7 +15,9 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
-" Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tomasr/molokai'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'joshdick/onedark.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -147,12 +149,9 @@ augroup END
 nnoremap <leader>% <esc>A %>%
 inoremap <leader>% <esc>A %>%
 let R_args = ['--no-save']
-let R_args_in_stline=1 "function arguments displayed in Vim's status line
 let R_assign_map="--"
 let R_hl_term=0 "do not rely on the auto detection of colorout
 let R_nvimpager='horizontal'
-let R_rconsole_width=0 "always split horizontally
-let R_rconsole_height=25
 let R_open_example=0
 let R_show_arg_help=0 "don't show R's documentation help in preview window when using ^-X ^-O
 let r_indent_align_args=1 "indent to parenthesis
