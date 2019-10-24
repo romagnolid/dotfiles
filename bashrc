@@ -118,5 +118,5 @@ export EDITOR="$VISUAL"
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 [[ $- == *i* ]] && stty -ixon
 
-LS_COLORS=$LS_COLORS:'di=1:ex=4'
+LS_COLORS='di=1:ex=4' # bold directories, underlined exe files
 export LS_COLORS
