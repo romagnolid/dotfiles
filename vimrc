@@ -3,11 +3,12 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+call vundle#end()            " required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'chrisbra/csv.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'felixhummel/setcolors.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/vimcmdline'
@@ -15,11 +16,7 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
-Plugin 'tomasr/molokai'
-Plugin 'arcticicestudio/nord-vim'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'joshdick/onedark.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
@@ -32,12 +29,17 @@ Plugin 'farmergreg/vim-lastplace'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'ibab/vim-snakemake'
-call vundle#end()            " required
+Plugin 'AndrewRadev/switch.vim'
+Plugin 'fxn/vim-monochrome'
+Plugin 'robertmeta/nofrils'
 
 filetype plugin indent on    " required
 if exists("g:syntax_on")
     syntax enable
 endif
+
+set t_Co=256
+colorscheme nofrils-dark
 
 au Filetype vim setlocal formatoptions-=o formatoptions+=1nBM
 set formatoptions+=r
@@ -47,9 +49,6 @@ set showcmd
 set termguicolors
 set colorcolumn=80
 set cursorline "highlight current line
-" set foldmethod=indent
-" set foldlevel=99
-set gdefault "always search global by default
 set hlsearch
 set ignorecase
 set infercase
@@ -85,25 +84,9 @@ let g:indent_guides_guide_size = 1
 " Plugin 'tpope/vim-vinegar'
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+' "hidden files: toggle with 'gh'
 
-let g:onedark_color_overrides = {
-\ "comment_grey": { "gui": "#abb3bf", "cterm": "248", "cterm16": "15" }
-\}
-" onedark.vim override: Don't set a background color when running in a terminal;
-" just use the terminal's background color
-" `gui` is the hex color code used in GUI mode/nvim true-color mode
-" `cterm` is the color code used in 256-color mode
-" `cterm16` is the color code used in 16-color mode
-if (has('autocmd') && !has('gui_running'))
-  augroup ColorSet
-    autocmd!
-    let s:white = { 'gui': '#ffffff', 'cterm': '15', 'cterm16' : '7' }
-    autocmd ColorScheme * call onedark#set_highlight('Normal', { 'fg': s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
-endif
-colorscheme onedark
-
 " Plugin 'chrisbra/csv.vim'
 let g:csv_autocmd_arrange = 1
+
 " Plugin 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_save_on_switch = 0
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -128,23 +111,25 @@ augroup templates
 augroup END
 
 " Plugin 'ntpeters/vim-better-whitespace'
-" let g:better_whitespace_enabled=1
-" let g:strip_whitespace_on_save=1
-" let g:strip_only_modified_lines=1
-" let g:strip_whitelines_at_eof=1
-" let g:strip_whitespace_confirm=0
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_only_modified_lines=1
+let g:strip_whitelines_at_eof=1
+let g:strip_whitespace_confirm=0
 
 " Plugin 'scrooloose/nerdcommenter'
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
 " Plugin 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 400
+
 " Plugin 'jalvesaq/Nvim-R'
 augroup nvimr
-  autocmd!
-  autocmd FileType r,rmd noremap <C-c> :RStop<cr>
+    autocmd!
+    autocmd FileType r,rmd noremap <C-c> :RStop<cr>
 augroup END
 nnoremap <leader>% <esc>A %>%
 inoremap <leader>% <esc>A %>%
@@ -155,14 +140,17 @@ let R_nvimpager='horizontal'
 let R_open_example=0
 let R_show_arg_help=0 "don't show R's documentation help in preview window when using ^-X ^-O
 let r_indent_align_args=1 "indent to parenthesis
+
 " Plugin 'jalvesaq/vimcmdline'
 let cmdline_app = {}
 let cmdline_app['sh']     = 'bash'
 let cmdline_app['python'] = 'ipython3'
 let cmdline_map_send = '<LocalLeader>d'
 let cmdline_map_send_and_stay = '<LocalLeader>l'
+
 " Plugin 'lervag/vimtex'
 let g:vimtex_compiler_latexmk = {'callback' : 0}
+
 " Plugin 'mbbill/undotree'
 if !exists('g:undotree_ShortIndicators')
     let g:undotree_ShortIndicators = 0
@@ -170,9 +158,10 @@ endif
 if !exists('g:undotree_SetFocusWhenToggle')
     let g:undotree_SetFocusWhenToggle = 1
 endif
+
 " Plugin 'itchyny/lightline.vim'
 let g:lightline = {
-    \ 'colorscheme':'onedark',
+    \ 'colorscheme':'wombat',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
@@ -211,12 +200,6 @@ set nowrap
 nnoremap j gj
 nnoremap k gk
 
-" save and exit
-inoremap <leader>s <esc>:w<cr>
-nnoremap <leader>s :w<cr>
-inoremap <leader>q <esc>:q<cr>
-nnoremap <leader>q :q<cr>
-
 " yank from current point to end of line
 nnoremap Y y$
 " highlight from current point to end of line
@@ -246,19 +229,12 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
 
-" unset cursorline when typing
+" unset cursorline when typing and leaving window
 augroup CursorSet
-  autocmd!
-  autocmd InsertEnter,InsertLeave * set cul!
-augroup END
-
-" better menu navigation
-augroup HelpMaps
     autocmd!
-    autocmd FileType help nnoremap <buffer> <C-[>  <C-t>
+    autocmd InsertLeave,WinEnter * set cul
+    autocmd InsertEnter,WinLeave * set nocul
 augroup END
-
-au VimLeave * set guicursor=a:ver25
 
 " move between buffers
 noremap <A-n> :bn<cr>
@@ -268,11 +244,23 @@ noremap <A-p> :bp<cr>
 noremap <C-M> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
 
 " automatically reload file
-au FocusGained,BufEnter * :silent! !
+augroup Focus
+    autocmd FocusGained,BufEnter * :silent! !
+augroup END
 
 " save and load folds
 augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
+    autocmd!
+    autocmd BufWinLeave * mkview
+    autocmd BufWinEnter * silent! loadview
+augroup END
+
+" better menu navigation
+augroup HelpMaps
+    autocmd!
+    autocmd FileType help nnoremap <buffer> <C-[>  <C-t>
+augroup END
+
+augroup Leave
+    au VimLeave * set guicursor=a:ver25
 augroup END
