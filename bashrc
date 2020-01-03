@@ -35,11 +35,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-# case "$TERM" in
-#     xterm-color|*-256color) color_prompt=yes;;
-# esac
-
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -65,8 +60,8 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 if [ "$color_prompt" = yes ]; then
-    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]\u@\h \w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
+    # ex.: mario.rossi@computer [9/9/99] ~
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]\u@\h [\D{%H:%M %d/%m/%y}] \w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -118,5 +113,5 @@ export EDITOR="$VISUAL"
 [ -f ~/.bashrc_local ] && . ~/.bashrc_local
 [[ $- == *i* ]] && stty -ixon
 
-LS_COLORS='di=1:ex=4' # bold directories, underlined exe files
-export LS_COLORS
+# LS_COLORS='di=1:ex=4:' # bold directories, underlined exe files
+# export LS_COLORS

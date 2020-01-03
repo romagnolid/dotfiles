@@ -30,8 +30,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'ibab/vim-snakemake'
 Plugin 'AndrewRadev/switch.vim'
-Plugin 'fxn/vim-monochrome'
-Plugin 'robertmeta/nofrils'
 
 filetype plugin indent on    " required
 if exists("g:syntax_on")
@@ -39,7 +37,7 @@ if exists("g:syntax_on")
 endif
 
 set t_Co=256
-colorscheme nofrils-dark
+colorscheme moria
 
 au Filetype vim setlocal formatoptions-=o formatoptions+=1nBM
 set formatoptions+=r
@@ -66,14 +64,18 @@ set softtabstop=4 tabstop=4 shiftwidth=4
 let mapleader=","
 let maplocalleader="\<space>"
 
+" join lines without adding space
+nnoremap <leader>j Jx
 " UPPERCASE word
 inoremap <silent> <c-u> <esc>viwUea
 
 " Plugin 'AndrewRadev/switch.vim'
 let g:switch_mapping = "t"
-let g:switch_custom_definitions = 
+let g:switch_custom_definitions =
             \[
-            \ [ 'TRUE', 'FALSE' ]
+            \ [ 'TRUE', 'FALSE' ],
+            \ [ '==', '!=' ],
+            \ [ '&', '|' ]
             \ ]
 
 " Plugin 'nathanaelkane/vim-indent-guides'
@@ -132,14 +134,15 @@ augroup nvimr
     autocmd FileType r,rmd noremap <C-c> :RStop<cr>
 augroup END
 nnoremap <leader>% <esc>A %>%
-inoremap <leader>% <esc>A %>%
+inoremap <leader>% <space>%>%
 let R_args = ['--no-save']
-let R_assign_map="--"
-let R_hl_term=0 "do not rely on the auto detection of colorout
+let R_assign_map = "--"
+let R_hl_term = 0 "do not rely on the auto detection of colorout
 let R_nvimpager='horizontal'
-let R_open_example=0
-let R_show_arg_help=0 "don't show R's documentation help in preview window when using ^-X ^-O
-let r_indent_align_args=1 "indent to parenthesis
+let R_open_example = 0
+let R_rconsole_width = winwidth(0) / 2 "split evenly
+let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
+let r_indent_align_args = 1 "indent to parenthesis
 
 " Plugin 'jalvesaq/vimcmdline'
 let cmdline_app = {}
@@ -241,7 +244,7 @@ noremap <A-n> :bn<cr>
 noremap <A-p> :bp<cr>
 
 " Markdown preview
-noremap <C-M> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
+" noremap <C-M> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
 
 " automatically reload file
 augroup Focus
@@ -264,3 +267,4 @@ augroup END
 augroup Leave
     au VimLeave * set guicursor=a:ver25
 augroup END
+au VimEnter,FocusGained,BufEnter * highlight Normal guibg=NONE ctermbg=NONE
