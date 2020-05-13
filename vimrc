@@ -17,7 +17,7 @@ Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -25,6 +25,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-rsi'
 Plugin 'farmergreg/vim-lastplace'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'wesQ3/vim-windowswap'
@@ -39,6 +40,7 @@ endif
 set t_Co=256
 colorscheme moria
 
+noremap <C-a> <Nop>
 au Filetype vim setlocal formatoptions-=o formatoptions+=1nBM
 set formatoptions+=r
 set nowrapscan "stop search at bottom
@@ -97,12 +99,10 @@ nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-nnoremap <silent> <M-p> :TmuxNavigatePrevious<cr>
 inoremap <silent> <M-h> <esc>:TmuxNavigateLeft<cr>
 inoremap <silent> <M-j> <esc>:TmuxNavigateDown<cr>
 inoremap <silent> <M-k> <esc>:TmuxNavigateUp<cr>
 inoremap <silent> <M-l> <esc>:TmuxNavigateRight<cr>
-inoremap <silent> <M-p> <esc>:TmuxNavigatePrevious<cr>
 
 augroup templates
     autocmd!
@@ -119,12 +119,6 @@ let g:strip_only_modified_lines=1
 let g:strip_whitelines_at_eof=1
 let g:strip_whitespace_confirm=0
 
-" Plugin 'scrooloose/nerdcommenter'
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
 " Plugin 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 400
 
@@ -133,8 +127,14 @@ augroup nvimr
     autocmd!
     autocmd FileType r,rmd noremap <C-c> :RStop<cr>
 augroup END
-nnoremap <leader>% <esc>A %>%
-inoremap <leader>% <space>%>%
+nnoremap <leader>% <esc>A %>%<space>
+inoremap <leader>% <space>%>%<space>
+nnoremap <leader>> <esc>A %<>%<space>
+inoremap <leader>> <space>%<>%<space>
+" nnoremap <silent> <LocalLeader>k :call RAction("skimr::skim")<CR>
+nnoremap <silent> <LocalLeader>h :call RAction("head")<CR>
+nnoremap <silent> <LocalLeader>t :call RAction("table" , ", useNA='ifany'")<CR>
+nnoremap <silent> <LocalLeader>s :call RAction("summary")<CR>
 let R_args = ['--no-save']
 let R_assign_map = "--"
 let R_hl_term = 0 "do not rely on the auto detection of colorout
@@ -239,12 +239,8 @@ augroup CursorSet
     autocmd InsertEnter,WinLeave * set nocul
 augroup END
 
-" move between buffers
-noremap <A-n> :bn<cr>
-noremap <A-p> :bp<cr>
-
 " Markdown preview
-" noremap <C-M> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
+noremap <C-P> :w!<CR>:w!$TMPDIR/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o $TMPDIR/vim-markdown.html $TMPDIR/vim-markdown.md<CR>:!google-chrome $TMPDIR/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR
 
 " automatically reload file
 augroup Focus

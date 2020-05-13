@@ -12,4 +12,4 @@
     s = status -s
     d = diff
 [help]
-	autocorrect = 6
+    autocorrect = 6
