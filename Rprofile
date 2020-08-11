@@ -10,6 +10,8 @@ if (interactive()) {
     options(width=as.integer(howWide))
 }
 .corner <- function(x, n=6){
+    if (any(n > dim(x)))
+        n <- min(dim(x))
     x[seq_len(n), seq_len(n)]
 }
 .image_rotation <- function(x){
