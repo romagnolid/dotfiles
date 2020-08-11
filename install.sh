@@ -10,6 +10,7 @@ fi
 mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.vim/after/colors/
 
+ln -sf $PWD/tender.vim        $HOME/.vim/after/colors/
 ln -sf $PWD/gitconfig         $HOME/.gitconfig
 ln -sf $PWD/Rprofile          $HOME/.Rprofile
 ln -sf $PWD/bash_aliases      $HOME/.bash_aliases
