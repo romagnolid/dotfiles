@@ -23,6 +23,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/AfterColors.vim'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'alexanderjeurissen/lumiere.vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -45,6 +46,7 @@ set wildmode=longest,list,full "wildmenu
 set expandtab
 set smarttab
 set softtabstop=4 tabstop=4 shiftwidth=4
+set smartcase
 set ignorecase
 
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -103,12 +105,13 @@ augroup END
 " Plugin 'jalvesaq/Nvim-R'
 augroup nvimr
     autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
     autocmd FileType r,rmd noremap <C-c> :RStop<cr>
 augroup END
 nnoremap <leader>% <esc>A %>%<space>
-inoremap <leader>% %>%<space>
+inoremap <leader>% <space>%>%<space>
 nnoremap <leader>> <esc>A %<>%<space>
-inoremap <leader>> %<>%<space>
+inoremap <leader>> <space>%<>%<space>
 nnoremap <silent> <LocalLeader>h :call RAction("head")<CR>
 nnoremap <silent> <LocalLeader>t :call RAction("table", ", useNA='ifany'")<CR>
 nnoremap <silent> <LocalLeader>s :call RAction("summary")<CR>
