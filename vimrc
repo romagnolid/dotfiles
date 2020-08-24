@@ -23,7 +23,8 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/AfterColors.vim'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'alexanderjeurissen/lumiere.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -112,6 +113,7 @@ nnoremap <leader>% <esc>A %>%<space>
 inoremap <leader>% <space>%>%<space>
 nnoremap <leader>> <esc>A %<>%<space>
 inoremap <leader>> <space>%<>%<space>
+nnoremap <silent> <LocalLeader>c :call RAction("class")<CR>
 nnoremap <silent> <LocalLeader>h :call RAction("head")<CR>
 nnoremap <silent> <LocalLeader>t :call RAction("table", ", useNA='ifany'")<CR>
 nnoremap <silent> <LocalLeader>s :call RAction("summary")<CR>
@@ -123,7 +125,7 @@ let r_indent_align_args = 1 "indent to parenthesis
 let R_nvimpager='horizontal'
 
 " Plugin 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 0
+let g:tmux_navigator_save_on_switch = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
