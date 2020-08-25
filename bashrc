@@ -94,7 +94,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-[ -f ~/.bash_aliases_local ] && . ~/.bash_aliases_local
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -110,8 +109,4 @@ fi
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 
-[ -f ~/.bashrc_local ] && . ~/.bashrc_local
 [[ $- == *i* ]] && stty -ixon
-
-# LS_COLORS='di=1:ex=4:' # bold directories, underlined exe files
-# export LS_COLORS
