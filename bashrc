@@ -51,19 +51,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ -f $HOME/.dotfiles/git-prompt.sh ]; then
-    . $HOME/.dotfiles/git-prompt.sh
-else
-        wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh --directory-prefix=$HOME/.dotfiles
+if [ ! -f $HOME/.dotfiles/git-prompt.sh ]; then
+    wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh --directory-prefix=$HOME/.dotfiles
 fi
+. $HOME/.dotfiles/git-prompt.sh
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUPSTREAM="auto"
 if [ "$color_prompt" = yes ]; then
-    # ex.: mario.rossi@computer [9/9/99] ~
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]\u@\h [\D{%H:%M %d/%m/%y}] \w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01m\]\u@\h [\t] [\w]\033[00m\]$(__git_ps1 " [%s]")\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\e[01m\e[32m\u@\h \e[34m[\t] \e[97;2m[\w] \e[0m$(__git_ps1 "[%s]")\n\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h [\t] [\w] $(__git_ps1 "[%s]")\n\$ '
 fi
 unset color_prompt force_color_prompt
 

@@ -11,7 +11,7 @@ mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.vim/after/colors/
 
 ln -sf $PWD/Rprofile          $HOME/.Rprofile
-ln -sf $PWD/bash_aliases      $HOME/.bash_aliases
+# ln -sf $PWD/bash_aliases      $HOME/.bash_aliases
 ln -sf $PWD/bashrc            $HOME/.bashrc
 ln -sf $PWD/filetype.vim      $HOME/.vim/
 ln -sf $PWD/gitconfig         $HOME/.gitconfig
@@ -23,4 +23,4 @@ ln -sf $PWD/tender.vim        $HOME/.vim/after/colors/
 ln -sf $PWD/tmux.conf         $HOME/.tmux.conf
 ln -sf $PWD/tmux.reset.conf   $HOME/.tmux/
 ln -sf $PWD/vimrc             $HOME/.vimrc
-ln -sf $PWD/zshrc             $HOME/.zshrc
+# ln -sf $PWD/zshrc             $HOME/.zshrc
