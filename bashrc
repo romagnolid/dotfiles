@@ -93,6 +93,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/.bash_aliases_lc ] && . ~/.bash_aliases_lc
+[ -f ~/.bashrc_lc ] && . ~/.bashrc_lc
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
