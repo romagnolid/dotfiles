@@ -26,6 +26,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'lervag/vimtex'
+Plugin 'jiangmiao/auto-pairs'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
