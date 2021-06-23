@@ -30,6 +30,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'lervag/vimtex'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'https://github.com/snakemake/snakemake.git', {'rtp': 'misc/vim/'}
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -186,3 +188,8 @@ cnoremap <C-B> <Left>
 
 " Plugin 'lervag/vimtex'
 let g:tex_flavor = 'latex'
+
+"Plugin 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<Tab>"
+" list all snippets for current filetype
+let g:UltiSnipsListSnippets="<c-l>"
