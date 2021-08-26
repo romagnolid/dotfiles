@@ -1,4 +1,5 @@
 options(max.print = 200,
+        # nvimcom.verbose=4,
         scipen = 10,
         repos = c(CRAN = "https://cran.rstudio.com"))
 
