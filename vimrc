@@ -5,33 +5,35 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'AndrewRadev/switch.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'chrisbra/csv.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'honza/vim-snippets'
 Plugin 'jacoborus/tender.vim'
 Plugin 'jalvesaq/Nvim-R'
+Plugin 'jalvesaq/vimcmdline'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/AfterColors.vim'
-Plugin 'wesQ3/vim-windowswap'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'lervag/vimtex'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'https://github.com/snakemake/snakemake.git', {'rtp': 'misc/vim/'}
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'vim-scripts/AfterColors.vim'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'LukeGoodsell/nextflow-vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -56,6 +58,7 @@ set smarttab
 set softtabstop=4 tabstop=4 shiftwidth=4
 set smartcase
 set ignorecase
+set colorcolumn=100
 
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
@@ -110,8 +113,14 @@ augroup templates
     autocmd BufNewFile *.py     0r ~/.vim/skeleton.py
 augroup END
 
-" Plugin 'jalvesaq/Nvim-R'
+" Plugin 'jalvesaq/vimcmdline'
+let cmdline_app = {}
+let cmdline_app['sh']     = 'bash'
+let cmdline_app['python'] = 'ipython3'
+let cmdline_map_send = '<LocalLeader>d'
+let cmdline_map_send_and_stay = '<LocalLeader>l'
 
+" Plugin 'jalvesaq/Nvim-R'
 augroup nvimr
     autocmd!
     autocmd TermOpen * setlocal nonumber norelativenumber
@@ -121,21 +130,14 @@ nnoremap <leader>% <esc>A %>%<space>
 inoremap <leader>% <space>%>%<space>
 nnoremap <leader>> <esc>A %<>%<space>
 inoremap <leader>> <space>%<>%<space>
-" nnoremap <silent> <LocalLeader>c :call RAction("class")<CR>
-" nnoremap <silent> <LocalLeader>h :call RAction("head")<CR>
-" nnoremap <silent> <LocalLeader>t :call RAction("table", ", useNA='ifany'")<CR>
 
-" nnoremap <silent> <LocalLeader>s :call RAction("summary")<CR>
 let R_assign_map = "--"
 let R_hl_term = 0 "do not rely on the auto detection of colorout
 let R_rconsole_width = winwidth(0) / 2 "split evenly
-let R_show_arg_help = 0 "don't show R's documentation help in preview window when using ^-X ^-O
-let R_show_arg = 0 "don't show R's documentation help in preview window when using ^-X ^-O
-let r_indent_align_args = 1 "indent to parenthesis
 let R_nvimpager='horizontal'
 
 " Plugin 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 0
+let g:tmux_navigator_save_on_switch = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -171,6 +173,7 @@ let g:switch_mapping = "t"
 let g:switch_custom_definitions =
             \[
             \ [ 'TRUE', 'FALSE' ],
+            \ [ 'Positive', 'Negative' ],
             \ [ '==', '!=' ],
             \ [ '&', '|' ]
             \ ]
@@ -193,3 +196,10 @@ let g:tex_flavor = 'latex'
 let g:UltiSnipsExpandTrigger="<Tab>"
 " list all snippets for current filetype
 let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsEditSplit="context"
+
+" Plugin 'vim-airline/vim-airline'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
