@@ -5,6 +5,8 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'jalvesaq/Nvim-R'
+Plugin 'jalvesaq/vimcmdline'
 Plugin 'AndrewRadev/switch.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'VundleVim/Vundle.vim'
@@ -13,8 +15,6 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'honza/vim-snippets'
 Plugin 'jacoborus/tender.vim'
-Plugin 'jalvesaq/Nvim-R'
-Plugin 'jalvesaq/vimcmdline'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'lervag/vimtex'
@@ -34,6 +34,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/AfterColors.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'LukeGoodsell/nextflow-vim'
+Plugin 'triglav/vim-visual-increment'
+Plugin 'junegunn/vim-peekaboo'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -43,9 +45,13 @@ colorscheme tender
 
 let mapleader=","
 let maplocalleader="\<space>"
+let r_indent_align_args=1
+autocmd BufNewFile,BufRead /projects/packages/aurora-dataviz/* setlocal tabstop=2 shiftwidth=2 listchars=multispace:\ ┊
+autocmd BufNewFile,BufRead /projects/packages/aurora-dataviz/* let r_indent_align_args=0
 
 set formatoptions+=r
-set list listchars=tab:\|-"show tab
+set list
+set listchars+=multispace:\ \ \ ┊
 set nowrapscan "stop search at bottom
 set splitbelow "working with windows
 set splitright "working with windows
@@ -54,7 +60,6 @@ set number
 set relativenumber
 set wildmode=longest,list,full "wildmenu
 set expandtab
-set smarttab
 set softtabstop=4 tabstop=4 shiftwidth=4
 set smartcase
 set ignorecase
@@ -133,11 +138,11 @@ inoremap <leader>> <space>%<>%<space>
 
 let R_assign_map = "--"
 let R_hl_term = 0 "do not rely on the auto detection of colorout
-let R_rconsole_width = winwidth(0) / 2 "split evenly
+let R_rconsole_width = winwidth(0)/2 "split evenly
 let R_nvimpager='horizontal'
 
 " Plugin 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 1
+let g:tmux_navigator_save_on_switch = 0
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -202,6 +207,5 @@ let g:UltiSnipsEditSplit="context"
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
-    let g:airline_symbols.linenr = '㏑'
     let g:airline_symbols.colnr = '℅'
 endif
