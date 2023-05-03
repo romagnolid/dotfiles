@@ -107,7 +107,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export VISUAL="nvim"
-export EDITOR="$VISUAL"
-
 [[ $- == *i* ]] && stty -ixon
+shopt -s direxpand
