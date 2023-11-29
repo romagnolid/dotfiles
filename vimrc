@@ -8,16 +8,15 @@ call vundle#begin()
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/vimcmdline'
 Plugin 'AndrewRadev/switch.vim'
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'broadinstitute/vim-wdl'
 Plugin 'chrisbra/csv.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'honza/vim-snippets'
 Plugin 'jacoborus/tender.vim'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'lervag/vimtex'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mbbill/undotree'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -36,6 +35,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'LukeGoodsell/nextflow-vim'
 Plugin 'triglav/vim-visual-increment'
 Plugin 'junegunn/vim-peekaboo'
+Plugin 'davidhalter/jedi-vim'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -51,7 +51,7 @@ autocmd BufNewFile,BufRead /projects/packages/aurora-dataviz/* let r_indent_alig
 
 set formatoptions+=r
 set list
-set listchars+=multispace:\ \ \ ┊
+" set listchars+=multispace:\ \ \ ┊
 set nowrapscan "stop search at bottom
 set splitbelow "working with windows
 set splitright "working with windows
@@ -135,11 +135,12 @@ nnoremap <leader>% <esc>A %>%<space>
 inoremap <leader>% <space>%>%<space>
 nnoremap <leader>> <esc>A %<>%<space>
 inoremap <leader>> <space>%<>%<space>
-
+inoremap <leader>i <space>%in%<space>
 let R_assign_map = "--"
+let R_buffer_opts = "nobuflisted"
 let R_hl_term = 0 "do not rely on the auto detection of colorout
-let R_rconsole_width = winwidth(0)/2 "split evenly
 let R_nvimpager='horizontal'
+let R_rconsole_width = winwidth(0)/2 "split evenly
 
 " Plugin 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_save_on_switch = 0
@@ -194,14 +195,15 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
 
-" Plugin 'lervag/vimtex'
-let g:tex_flavor = 'latex'
-
 "Plugin 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<Tab>"
+" let g:UltiSnipsExpandTrigger="<Tab>"
 " list all snippets for current filetype
-let g:UltiSnipsListSnippets="<c-l>"
-let g:UltiSnipsEditSplit="context"
+" let g:UltiSnipsListSnippets="<c-l>"
+" let g:UltiSnipsEditSplit="context"
+
+" foundamental commands
+" UltiSnipsEdit
+" call UltiSnips#RefreshSnippets()
 
 " Plugin 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
