@@ -8,6 +8,7 @@ fi
 
 mkdir -p $HOME/.config/nvim
 mkdir -p $HOME/.vim/after/colors/
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # ln -sf $PWD/tmux.reset.conf   $HOME/.tmux/
 # ln -sf $PWD/zshrc             $HOME/.zshrc
