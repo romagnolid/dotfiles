@@ -2,14 +2,19 @@
     email = dario.romagnoli87@gmail.com
     name = Dario Romagnoli
 [core]
-    editor = nvim
-[push]
-    default = simple
-[merge]
-    conflictstyle = diff3
+    editor = vi
 [alias]
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     s = status -s
     d = diff
-[help]
-    autocorrect = 6
+[credential]
+	helper = cache
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[safe]
+	directory = /resources/tools/ensembl-vep

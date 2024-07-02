@@ -1,11 +1,9 @@
-options(max.print = 200,
+options(max.print = 100,
         # nvimcom.verbose=4,
         scipen = 10,
         repos = c(CRAN = "https://cran.rstudio.com"))
 
-if (interactive()) {
-    try(require(devtools))
-}
+.datefile <- function(x, ext) paste0(x, "_", Sys.Date(), ".", ext)
 
 .wideScreen <- function(howWide=Sys.getenv("COLUMNS")) {
     options(width=as.integer(howWide))
@@ -27,10 +25,6 @@ if (interactive()) {
 #       c(1,0,2))    |
     stopifnot(is.matrix(x))
     return(t(x)[, nrow(x):1, drop=FALSE])
-}
-
-if (dir.exists("/scratch/tmp_dromagnoli/")) {
-    Sys.setenv("TMPDIR"="/scratch/tmp_dromagnoli/")
 }
 
 # tab-complete package names

@@ -140,7 +140,7 @@ let R_assign_map = "--"
 let R_buffer_opts = "nobuflisted"
 let R_hl_term = 0 "do not rely on the auto detection of colorout
 let R_nvimpager='horizontal'
-let R_rconsole_width = winwidth(0)/2 "split evenly
+let R_rconsole_width = winwidth(0)/5*2 "split screen
 
 " Plugin 'christoomey/vim-tmux-navigator'
 let g:tmux_navigator_save_on_switch = 0
@@ -209,5 +209,5 @@ cnoremap <C-B> <Left>
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
-    let g:airline_symbols.colnr = '℅'
+    let g:airline_symbols.colnr = '¢'
 endif
