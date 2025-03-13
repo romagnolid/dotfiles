@@ -16,5 +16,5 @@
 	required = true
 [init]
 	defaultBranch = main
-[safe]
-	directory = /resources/tools/ensembl-vep
+[pull]
+	ff = only
