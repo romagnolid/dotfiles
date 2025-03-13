@@ -1,17 +1,17 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+let g:python3_host_prog = '/home/dario.romagnoli/.miniconda3/bin/python3'
 
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'jalvesaq/vimcmdline'
 Plugin 'AndrewRadev/switch.vim'
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'broadinstitute/vim-wdl'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'chrisbra/csv.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'jacoborus/tender.vim'
@@ -131,11 +131,6 @@ augroup nvimr
     autocmd TermOpen * setlocal nonumber norelativenumber
     autocmd FileType r,rmd noremap <C-c> :RStop<cr>
 augroup END
-nnoremap <leader>% <esc>A %>%<space>
-inoremap <leader>% <space>%>%<space>
-nnoremap <leader>> <esc>A %<>%<space>
-inoremap <leader>> <space>%<>%<space>
-inoremap <leader>i <space>%in%<space>
 let R_assign_map = "--"
 let R_buffer_opts = "nobuflisted"
 let R_hl_term = 0 "do not rely on the auto detection of colorout
@@ -143,7 +138,7 @@ let R_nvimpager='horizontal'
 let R_rconsole_width = winwidth(0)/5*2 "split screen
 
 " Plugin 'christoomey/vim-tmux-navigator'
-let g:tmux_navigator_save_on_switch = 0
+let g:tmux_navigator_save_on_switch = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -195,11 +190,13 @@ cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
 cnoremap <C-B> <Left>
 
-"Plugin 'SirVer/ultisnips'
-" let g:UltiSnipsExpandTrigger="<Tab>"
-" list all snippets for current filetype
-" let g:UltiSnipsListSnippets="<c-l>"
-" let g:UltiSnipsEditSplit="context"
+""Plugin 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="context"
+"" list all snippets for current filetype
+let g:UltiSnipsListSnippets="<c-l>"
 
 " foundamental commands
 " UltiSnipsEdit
