@@ -15,6 +15,8 @@ let maplocalleader="\<space>"
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
 
+colorscheme tender
+
 set softtabstop=4 tabstop=4 shiftwidth=4
 " yank from current point to end of line
 nnoremap Y y$

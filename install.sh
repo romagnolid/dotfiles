@@ -10,6 +10,11 @@ if [ ! -e ~/.tmux/plugins/tpm-redux ]; then
 	git clone https://github.com/RyanMacG/tpm-redux.git ~/.tmux/plugins/tpm-redux
 
 fi
+if [ ! -e ~/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 
 ln -sf $PWD/bashrc       $HOME/.bashrc
 ln -sf $PWD/bash_aliases $HOME/.bash_aliases
