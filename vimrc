@@ -2,7 +2,6 @@ call plug#begin()
 
 " List your plugins here
 Plug 'tpope/vim-sensible'
-Plug 'jalvesaq/Nvim-R'
 Plug 'jacoborus/tender.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
