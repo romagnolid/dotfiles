@@ -1,5 +1,0 @@
-# use C-X C-R to reload
-$include /etc/inputrc
-
-set completion-prefix-display-length 10
-set show-all-if-ambiguous off
