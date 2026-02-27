@@ -51,7 +51,7 @@ let R_assign_map = "--"
 " Skeletons
 augroup templates
     autocmd!
-    autocmd BufNewFile *.R      0r ~/.vim/skeleton.R
-    autocmd BufNewFile *.sh     0r ~/.vim/skeleton.sh
-    autocmd BufNewFile *.py     0r ~/.vim/skeleton.py
+    autocmd BufNewFile *.R      0r ~/.dotfiles/vim/skeletons/skeleton.R
+    autocmd BufNewFile *.sh     0r ~/.dotfiles/vim/skeletons/skeleton.sh
+    autocmd BufNewFile *.py     0r ~/.dotfiles/vim/skeletons/skeleton.py
 augroup END
