@@ -3,6 +3,7 @@ call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'jacoborus/tender.vim'
+Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-highlightedyank'
