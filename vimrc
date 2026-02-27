@@ -7,6 +7,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
+Plug 'junegunn/vim-peekaboo'
+Plug 'jiangmiao/auto-pairs'
 Plug 'jalvesaq/Vim-R'
 call plug#end()
 
@@ -32,4 +34,24 @@ let g:highlightedyank_highlight_duration = 400
 augroup HelpMaps
     autocmd!
     autocmd FileType help nnoremap <buffer> <C-[>  <C-t>
+augroup END
+
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+if !isdirectory($HOME."/.vim/undofiles")
+    call mkdir($HOME."/.vim/undofiles", "", 0700)
+endif
+set undodir=~/.vim/undofiles
+set undofile
+
+"Plug 'jalvesaq/Vim-R'
+let R_assign_map = "--"
+
+" Skeletons
+augroup templates
+    autocmd!
+    autocmd BufNewFile *.R      0r ~/.vim/skeleton.R
+    autocmd BufNewFile *.sh     0r ~/.vim/skeleton.sh
+    autocmd BufNewFile *.py     0r ~/.vim/skeleton.py
 augroup END
