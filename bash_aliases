@@ -14,6 +14,3 @@ alias bioinfolab2='ssh dario.romagnoli@10.110.128.61'
 alias bioinfolab3='ssh dario.romagnoli@10.110.128.71'
 alias dayhoff="ssh AS184359@dayhoff"
 alias turing="ssh AS184359@turing"
-
-alias_root="~/Bioinfolab"
-alias mimesis="cd $alias_root/projects2/2024_MIMESIS_prospettico"

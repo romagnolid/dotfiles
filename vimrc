@@ -6,6 +6,7 @@ Plug 'jacoborus/tender.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-highlightedyank'
 Plug 'mbbill/undotree'
 Plug 'junegunn/vim-peekaboo'
@@ -21,6 +22,19 @@ nnoremap <leader>ev :vsplit $HOME/.vimrc<cr>
 colorscheme tender
 
 set softtabstop=4 tabstop=4 shiftwidth=4
+set ignorecase
+set smartcase
+set smarttab
+set expandtab
+set nowrap
+set splitright
+set splitbelow
+set nu
+set rnu
+set nowrapscan
+
+set list
+set listchars=leadmultispace:---+,tab:\|-,extends:>
 " yank from current point to end of line
 nnoremap Y y$
 " highlight from current point to end of line
@@ -38,10 +52,10 @@ augroup HelpMaps
 augroup END
 
 if !isdirectory($HOME."/.vim")
-    call mkdir($HOME."/.vim", "", 0770)
+    call mkdir($HOME."/.vim", "", 0750)
 endif
 if !isdirectory($HOME."/.vim/undofiles")
-    call mkdir($HOME."/.vim/undofiles", "", 0700)
+    call mkdir($HOME."/.vim/undofiles", "", 0750)
 endif
 set undodir=~/.vim/undofiles
 set undofile
@@ -52,7 +66,7 @@ let R_assign_map = "--"
 " Skeletons
 augroup templates
     autocmd!
-    autocmd BufNewFile *.R      0r ~/.dotfiles/vim/skeletons/skeleton.R
-    autocmd BufNewFile *.sh     0r ~/.dotfiles/vim/skeletons/skeleton.sh
-    autocmd BufNewFile *.py     0r ~/.dotfiles/vim/skeletons/skeleton.py
+    autocmd BufNewFile *.R    0r ~/.dotfiles/vim/skeletons/skeleton.R
+    autocmd BufNewFile *.sh   0r ~/.dotfiles/vim/skeletons/skeleton.sh
+    autocmd BufNewFile *.py   0r ~/.dotfiles/vim/skeletons/skeleton.py
 augroup END
