@@ -122,5 +122,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-export NXF_SINGULARITY_CACHEDIR="/data2/singularity_cache/"
