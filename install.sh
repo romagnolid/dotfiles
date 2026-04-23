@@ -18,6 +18,7 @@ fi
 
 ln -sf $PWD/bashrc       $HOME/.bashrc
 ln -sf $PWD/bash_aliases $HOME/.bash_aliases
+ln -sf $PWD/profile      $HOME/.profile
 ln -sf $PWD/Rprofile     $HOME/.Rprofile
 ln -sf $PWD/gitconfig    $HOME/.gitconfig
 ln -sf $PWD/tmux.conf    $HOME/.tmux.conf

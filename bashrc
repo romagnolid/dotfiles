@@ -123,5 +123,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NXF_SINGULARITY_CACHEDIR="/data2/singularity_cache/"
-export PATH=/home/dario/.local/bin:/home/dario/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/nvim/
+export PATH="$PATH:/opt/nvim/"
