@@ -12,6 +12,7 @@ Plug 'mbbill/undotree'
 Plug 'junegunn/vim-peekaboo'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jalvesaq/Vim-R'
+Plug 'AndrewRadev/switch.vim'
 call plug#end()
 
 let mapleader=","
@@ -70,3 +71,10 @@ augroup templates
     autocmd BufNewFile *.sh   0r ~/.dotfiles/vim/skeletons/skeleton.sh
     autocmd BufNewFile *.py   0r ~/.dotfiles/vim/skeletons/skeleton.py
 augroup END
+
+" Plug 'AndrewRadev/switch.vim'
+let g:switch_mapping = "t"
+let g:switch_custom_definitions =
+    \ [
+    \   switch#NormalizedCase(['true', 'false']),
+    \ ]
