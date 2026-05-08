@@ -13,6 +13,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jalvesaq/Vim-R'
 Plug 'AndrewRadev/switch.vim'
+Plug 'chrisbra/csv.vim'
 call plug#end()
 
 let mapleader=","
