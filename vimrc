@@ -1,5 +1,7 @@
-call plug#begin()
+filetype plugin on
+syntax on
 
+call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'jacoborus/tender.vim'
@@ -14,6 +16,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'jalvesaq/Vim-R'
 Plug 'AndrewRadev/switch.vim'
 Plug 'chrisbra/csv.vim'
+Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 let mapleader=","
