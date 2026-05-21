@@ -2,6 +2,7 @@ alias du="du -h"
 alias df="df -h"
 alias ls='ls --color=auto --group-directories-first'
 alias l1='ls -1'
+alias wcl='wc -l'
 alias untar="tar xvzf"
 alias less="less -Sn"
 alias zless="zless -Sn"
