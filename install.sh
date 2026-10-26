@@ -16,6 +16,9 @@ if [ ! -e ~/.vim/autoload/plug.vim ]; then
 fi
 
 
+mkdir $HOME/.zsh
+ln -sf $PWD/zsh/*.zsh    $HOME/.zsh
+ln -sf $PWD/zshrc        $HOME/.zshrc
 ln -sf $PWD/bashrc       $HOME/.bashrc
 ln -sf $PWD/bash_aliases $HOME/.bash_aliases
 ln -sf $PWD/profile      $HOME/.profile
