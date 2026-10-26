@@ -1,5 +1,0 @@
-alias mimesis="cd ~/Bioinfolab/projects2/2024_MIMESIS_prospettico"
-alias aurora="cd ~/Bioinfolab/projects/2022_AURORA_mutations/figures/final_figures/"
-alias diagenode="cd ~/Bioinfolab/projects/2023_Diagenode"
-alias integrative="cd ~/Bioinfolab/projects/2023_Palbores_integrative"
-alias tiresias="cd ~/Bioinfolab/projects2/2025_TIRESIAS_TGS"
